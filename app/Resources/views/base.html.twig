@@ -11,7 +11,41 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top "> 
+                <div class="container-fluid"> 
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                             {% image '@AppBundle/Resources/public/css/images/ccas.svg' %}
+                                <img src="{{ asset_url }}" alt="logoCCAS" width="50" />
+                            {% endimage %} 
+                        </a>
+                    </div>
+                    <a href="#" class="pull-left navbar-brand" >QUIMSOFT</a>
+                    <div class="collapse navbar-collapse navbar-ex1-collapse" id="bs-example-navbar-collapse-9">
+                        <ul class="nav navbar-nav side-nav">
+                            <li><a href="#">Home</a></li> 
+                            <li><a href="#">Link</a></li> 
+                            <li><a href="#" class="bottom" >Link</a></li> 
+                        </ul> 
+                    </div>
+                        
+                </div>
+            </nav> 
+            <div id="page-wrapper">
+                <div class="container-fluid">
+
+                        {% block body %}{% endblock %}        
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>     
+            <div class="fixed-bottom">Powered By QuimSoft</div>            
+        </div>
+        <div class="fixed-bottom"><span class="pull-right">Powered By QuimSoft</span></div>
+        <nav class="navbar fixed-bottom navbar-light bg-faded">
+            <a class="navbar-brand" href="#"><span class="pull-right">Fixed bottom</span></a>
+          </nav>
         {% block javascripts %}
             {% javascripts 
                 '@AppBundle/Resources/public/js/jquery.js'
