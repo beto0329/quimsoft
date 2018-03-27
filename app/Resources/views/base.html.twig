@@ -2,13 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}QuimSoft{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <style>
+            .fixed-bottom {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                z-index: 999999;
+            }
+        </style>
     </head>
     <body>
         <div id="wrapper">
@@ -16,8 +26,8 @@
                 <div class="container-fluid"> 
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">
-                             {% image '@AppBundle/Resources/public/css/images/ccas.svg' %}
-                                <img src="{{ asset_url }}" alt="logoCCAS" width="50" />
+                             {% image '@AppBundle/Resources/public/css/images/logo.svg' %}
+                                <img src="{{ asset_url }}" alt="logo" width="30" />
                             {% endimage %} 
                         </a>
                     </div>
@@ -39,13 +49,16 @@
 
                 </div>
                 <!-- /.container-fluid -->
-            </div>     
-            <div class="fixed-bottom">Powered By QuimSoft</div>            
+            </div>                 
         </div>
-        <div class="fixed-bottom"><span class="pull-right">Powered By QuimSoft</span></div>
-        <nav class="navbar fixed-bottom navbar-light bg-faded">
-            <a class="navbar-brand" href="#"><span class="pull-right">Fixed bottom</span></a>
-          </nav>
+        <div class="fixed-bottom">
+            <a href="#" class="pull-left" >
+                 {% image '@AppBundle/Resources/public/css/images/logo.svg' %}
+                    <img src="{{ asset_url }}" alt="logo" width="50" />
+                {% endimage %} <span style="color: #fff;">Powered By QuimSoft</span>
+            </a>
+            
+        </div>
         {% block javascripts %}
             {% javascripts 
                 '@AppBundle/Resources/public/js/jquery.js'

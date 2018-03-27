@@ -9,7 +9,9 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
         ROLE_PRODUCCION:  ROLE_PRODUCCION
-        ROLE_CALIDAD:     ROLE_CALIDAD  
+        ROLE_CALIDAD:     ROLE_CALIDAD
+        ROLE_REGENTE:     ROLE_REGENTE
+        ROLE_DESPACHOS:   ROLE_DESPACHOS
 
     providers:
         fos_userbundle:
