@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Guiaestabilidad" table="guiaestabilidad">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombremedicamento" type="string" column="nombreMedicamento" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="nombrelasa" type="string" column="nombreLasa" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="presentacionfavorita" type="float" column="presentacionFavorita" precision="10" scale="0" nullable="false"/>
+    <field name="unidadmediad" type="string" column="unidadMediad" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="volreconstitucion" type="float" column="volReconstitucion" precision="10" scale="0" nullable="false"/>
+    <field name="concentracion" type="float" column="concentracion" precision="10" scale="0" nullable="false"/>
+    <field name="envase" type="string" column="envase" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="vehiculodilucion" type="string" column="vehiculoDilucion" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="volvehiculodilucion" type="float" column="volVehiculoDilucion" precision="10" scale="0" nullable="false"/>
+    <field name="viaadmon" type="string" column="viaAdmon" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="condicionesalmacenamiento" type="string" column="condicionesAlmacenamiento" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fotosensible" type="boolean" column="fotosensible" nullable="false"/>
+    <field name="estabilidadmezcladias" type="float" column="estabilidadMezclaDias" precision="10" scale="0" nullable="false"/>
+    <field name="estabilidadmezclahoras" type="float" column="estabilidadMezclaHoras" precision="10" scale="0" nullable="false"/>
+    <field name="estabilidadsobrantedias" type="float" column="estabilidadSobranteDias" precision="10" scale="0" nullable="false"/>
+    <field name="estabilidadsobrantehoras" type="float" column="estabilidadSobranteHoras" precision="10" scale="0" nullable="false"/>
+    <field name="condialmacensobrante" type="string" column="condiAlmacenSobrante" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="grupoterapeutico" type="string" column="grupoTerapeutico" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ordencampana" type="string" column="ordenCampana" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="referencia" type="string" column="referencia" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tiempoinfusion" type="string" column="tiempoInfusion" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tipo" type="string" column="tipo" length="150" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idlaboratorio" type="integer" column="idLaboratorio" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

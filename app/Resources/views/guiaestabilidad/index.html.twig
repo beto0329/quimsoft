@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Guiaestabilidads list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombremedicamento</th>
+                <th>Laboratorio</th>
+                <th>Nombrelasa</th>
+                <th>Presentacionfavorita</th>
+                <th>Unidadmediad</th>
+                <th>Volreconstitucion</th>
+                <th>Concentracion</th>
+                <th>Envase</th>
+                <th>Vehiculodilucion</th>
+                <th>Volvehiculodilucion</th>
+                <th>Viaadmon</th>
+                <th>Condicionesalmacenamiento</th>
+                <th>Fotosensible</th>
+                <th>Estabilidadmezcladias</th>
+                <th>Estabilidadmezclahoras</th>
+                <th>Estabilidadsobrantedias</th>
+                <th>Estabilidadsobrantehoras</th>
+                <th>Condialmacensobrante</th>
+                <th>Grupoterapeutico</th>
+                <th>Ordencampana</th>
+                <th>Referencia</th>
+                <th>Tiempoinfusion</th>
+                <th>Tipo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for guiaestabilidad in guiaestabilidads %}
+            <tr>
+                <td><a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">{{ guiaestabilidad.id }}</a></td>
+                <td>{{ guiaestabilidad.nombremedicamento }}</td>
+                <td>{{ guiaestabilidad.laboratorio }}</td>
+                <td>{{ guiaestabilidad.nombrelasa }}</td>
+                <td>{{ guiaestabilidad.presentacionfavorita }}</td>
+                <td>{{ guiaestabilidad.unidadmediad }}</td>
+                <td>{{ guiaestabilidad.volreconstitucion }}</td>
+                <td>{{ guiaestabilidad.concentracion }}</td>
+                <td>{{ guiaestabilidad.envase }}</td>
+                <td>{{ guiaestabilidad.vehiculodilucion }}</td>
+                <td>{{ guiaestabilidad.volvehiculodilucion }}</td>
+                <td>{{ guiaestabilidad.viaadmon }}</td>
+                <td>{{ guiaestabilidad.condicionesalmacenamiento }}</td>
+                <td>{% if guiaestabilidad.fotosensible %}Yes{% else %}No{% endif %}</td>
+                <td>{{ guiaestabilidad.estabilidadmezcladias }}</td>
+                <td>{{ guiaestabilidad.estabilidadmezclahoras }}</td>
+                <td>{{ guiaestabilidad.estabilidadsobrantedias }}</td>
+                <td>{{ guiaestabilidad.estabilidadsobrantehoras }}</td>
+                <td>{{ guiaestabilidad.condialmacensobrante }}</td>
+                <td>{{ guiaestabilidad.grupoterapeutico }}</td>
+                <td>{{ guiaestabilidad.ordencampana }}</td>
+                <td>{{ guiaestabilidad.referencia }}</td>
+                <td>{{ guiaestabilidad.tiempoinfusion }}</td>
+                <td>{{ guiaestabilidad.tipo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('guiaestabilidad_new') }}">Create a new guiaestabilidad</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,54 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Laboratorio
+ *
+ * @ORM\Table(name="laboratorio")
+ * @ORM\Entity
+ */
+class Laboratorio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=150, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contacto", type="string", length=200, nullable=false)
+     */
+    private $contacto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telContacto", type="string", length=20, nullable=false)
+     */
+    private $telcontacto;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="current", type="datetime", nullable=false)
+     */
+    private $current = 'CURRENT_TIMESTAMP';
+
+
+}
+

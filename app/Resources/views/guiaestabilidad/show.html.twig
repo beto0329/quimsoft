@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Guiaestabilidad</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ guiaestabilidad.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombremedicamento</th>
+                <td>{{ guiaestabilidad.nombremedicamento }}</td>
+            </tr>
+            <tr>
+                <th>Laboratorio</th>
+                <td>{{ guiaestabilidad.laboratorio }}</td>
+            </tr>
+            <tr>
+                <th>Nombrelasa</th>
+                <td>{{ guiaestabilidad.nombrelasa }}</td>
+            </tr>
+            <tr>
+                <th>Presentacionfavorita</th>
+                <td>{{ guiaestabilidad.presentacionfavorita }}</td>
+            </tr>
+            <tr>
+                <th>Unidadmediad</th>
+                <td>{{ guiaestabilidad.unidadmediad }}</td>
+            </tr>
+            <tr>
+                <th>Volreconstitucion</th>
+                <td>{{ guiaestabilidad.volreconstitucion }}</td>
+            </tr>
+            <tr>
+                <th>Concentracion</th>
+                <td>{{ guiaestabilidad.concentracion }}</td>
+            </tr>
+            <tr>
+                <th>Envase</th>
+                <td>{{ guiaestabilidad.envase }}</td>
+            </tr>
+            <tr>
+                <th>Vehiculodilucion</th>
+                <td>{{ guiaestabilidad.vehiculodilucion }}</td>
+            </tr>
+            <tr>
+                <th>Volvehiculodilucion</th>
+                <td>{{ guiaestabilidad.volvehiculodilucion }}</td>
+            </tr>
+            <tr>
+                <th>Viaadmon</th>
+                <td>{{ guiaestabilidad.viaadmon }}</td>
+            </tr>
+            <tr>
+                <th>Condicionesalmacenamiento</th>
+                <td>{{ guiaestabilidad.condicionesalmacenamiento }}</td>
+            </tr>
+            <tr>
+                <th>Fotosensible</th>
+                <td>{% if guiaestabilidad.fotosensible %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Estabilidadmezcladias</th>
+                <td>{{ guiaestabilidad.estabilidadmezcladias }}</td>
+            </tr>
+            <tr>
+                <th>Estabilidadmezclahoras</th>
+                <td>{{ guiaestabilidad.estabilidadmezclahoras }}</td>
+            </tr>
+            <tr>
+                <th>Estabilidadsobrantedias</th>
+                <td>{{ guiaestabilidad.estabilidadsobrantedias }}</td>
+            </tr>
+            <tr>
+                <th>Estabilidadsobrantehoras</th>
+                <td>{{ guiaestabilidad.estabilidadsobrantehoras }}</td>
+            </tr>
+            <tr>
+                <th>Condialmacensobrante</th>
+                <td>{{ guiaestabilidad.condialmacensobrante }}</td>
+            </tr>
+            <tr>
+                <th>Grupoterapeutico</th>
+                <td>{{ guiaestabilidad.grupoterapeutico }}</td>
+            </tr>
+            <tr>
+                <th>Ordencampana</th>
+                <td>{{ guiaestabilidad.ordencampana }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ guiaestabilidad.referencia }}</td>
+            </tr>
+            <tr>
+                <th>Tiempoinfusion</th>
+                <td>{{ guiaestabilidad.tiempoinfusion }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ guiaestabilidad.tipo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('guiaestabilidad_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Laboratorios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Contacto</th>
+                <th>Telcontacto</th>
+                <th>Current</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for laboratorio in laboratorios %}
+            <tr>
+                <td><a href="{{ path('laboratorio_show', { 'id': laboratorio.id }) }}">{{ laboratorio.id }}</a></td>
+                <td>{{ laboratorio.nombre }}</td>
+                <td>{{ laboratorio.contacto }}</td>
+                <td>{{ laboratorio.telcontacto }}</td>
+                <td>{% if laboratorio.current %}{{ laboratorio.current|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('laboratorio_show', { 'id': laboratorio.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('laboratorio_edit', { 'id': laboratorio.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('laboratorio_new') }}">Create a new laboratorio</a>
+        </li>
+    </ul>
+{% endblock %}

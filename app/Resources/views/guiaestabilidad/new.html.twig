@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Crear Guía de Estabilidad</h1>
+
+    {{ form_start(form) }}
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.nombremedicamento) }}
+            {{ form_widget(form.nombremedicamento) }}
+            {{ form_errors(form.nombremedicamento) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.nombrelasa) }}
+            {{ form_widget(form.nombrelasa) }}
+            {{ form_errors(form.nombrelasa) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.presentacionfavorita) }}
+            {{ form_widget(form.presentacionfavorita) }}
+            {{ form_errors(form.presentacionfavorita) }}
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.unidadmediad) }}
+            {{ form_widget(form.unidadmediad) }}
+            {{ form_errors(form.unidadmediad) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.volreconstitucion) }}
+            {{ form_widget(form.volreconstitucion) }}
+            {{ form_errors(form.volreconstitucion) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.concentracion) }}
+            {{ form_widget(form.concentracion) }}
+            {{ form_errors(form.concentracion) }}
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.envase) }}
+            {{ form_widget(form.envase) }}
+            {{ form_errors(form.envase) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.vehiculodilucion) }}
+            {{ form_widget(form.vehiculodilucion) }}
+            {{ form_errors(form.vehiculodilucion) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.volvehiculodilucion) }}
+            {{ form_widget(form.volvehiculodilucion) }}
+            {{ form_errors(form.volvehiculodilucion) }}
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.viaadmon) }}
+            {{ form_widget(form.viaadmon) }}
+            {{ form_errors(form.viaadmon) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.condicionesalmacenamiento) }}
+            {{ form_widget(form.condicionesalmacenamiento) }}
+            {{ form_errors(form.condicionesalmacenamiento) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.fotosensible) }}
+            {{ form_widget(form.fotosensible) }}
+            {{ form_errors(form.fotosensible) }}
+        </div>
+    </div>     
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.estabilidadmezcladias) }}
+            {{ form_widget(form.estabilidadmezcladias) }}
+            {{ form_errors(form.estabilidadmezcladias) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.estabilidadmezclahoras) }}
+            {{ form_widget(form.estabilidadmezclahoras) }}
+            {{ form_errors(form.estabilidadmezclahoras) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.estabilidadsobrantedias) }}
+            {{ form_widget(form.estabilidadsobrantedias) }}
+            {{ form_errors(form.estabilidadsobrantedias) }}
+        </div>
+    </div> 
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.estabilidadsobrantehoras) }}
+            {{ form_widget(form.estabilidadsobrantehoras) }}
+            {{ form_errors(form.estabilidadsobrantehoras) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.condialmacensobrante) }}
+            {{ form_widget(form.condialmacensobrante) }}
+            {{ form_errors(form.condialmacensobrante) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.grupoterapeutico) }}
+            {{ form_widget(form.grupoterapeutico) }}
+            {{ form_errors(form.grupoterapeutico) }}
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.ordencampana) }}
+            {{ form_widget(form.ordencampana) }}
+            {{ form_errors(form.ordencampana) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.referencia) }}
+            {{ form_widget(form.referencia) }}
+            {{ form_errors(form.referencia) }}
+        </div>
+        <div class="col-md-4" >
+            {{ form_label(form.tiempoinfusion) }}
+            {{ form_widget(form.tiempoinfusion) }}
+            {{ form_errors(form.tiempoinfusion) }}
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-4" >
+            {{ form_label(form.idlaboratorio) }}
+            {{ form_widget(form.idlaboratorio) }}
+            {{ form_errors(form.idlaboratorio) }}
+        </div>
+        <div class="col-md-4" >
+            <label></label>
+            {{ form_widget(form) }}
+        </div>
+    </div>    
+    {{ form_end(form) }}
+{% endblock %}
