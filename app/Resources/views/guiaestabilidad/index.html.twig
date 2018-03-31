@@ -20,16 +20,6 @@
                 <th>Viaadmon</th>
                 <th>Condicionesalmacenamiento</th>
                 <th>Fotosensible</th>
-                <th>Estabilidadmezcladias</th>
-                <th>Estabilidadmezclahoras</th>
-                <th>Estabilidadsobrantedias</th>
-                <th>Estabilidadsobrantehoras</th>
-                <th>Condialmacensobrante</th>
-                <th>Grupoterapeutico</th>
-                <th>Ordencampana</th>
-                <th>Referencia</th>
-                <th>Tiempoinfusion</th>
-                <th>Tipo</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -50,25 +40,8 @@
                 <td>{{ guiaestabilidad.viaadmon }}</td>
                 <td>{{ guiaestabilidad.condicionesalmacenamiento }}</td>
                 <td>{% if guiaestabilidad.fotosensible %}Yes{% else %}No{% endif %}</td>
-                <td>{{ guiaestabilidad.estabilidadmezcladias }}</td>
-                <td>{{ guiaestabilidad.estabilidadmezclahoras }}</td>
-                <td>{{ guiaestabilidad.estabilidadsobrantedias }}</td>
-                <td>{{ guiaestabilidad.estabilidadsobrantehoras }}</td>
-                <td>{{ guiaestabilidad.condialmacensobrante }}</td>
-                <td>{{ guiaestabilidad.grupoterapeutico }}</td>
-                <td>{{ guiaestabilidad.ordencampana }}</td>
-                <td>{{ guiaestabilidad.referencia }}</td>
-                <td>{{ guiaestabilidad.tiempoinfusion }}</td>
-                <td>{{ guiaestabilidad.tipo }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}" class="btn btn-default" >edit</a>
                 </td>
             </tr>
         {% endfor %}

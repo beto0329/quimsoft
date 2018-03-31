@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Guiaestabilidad
  *
- * @ORM\Table(name="guiaestabilidad")
+ * @ORM\Table(name="guiaestabilidad", indexes={@ORM\Index(name="IDX_879BEF3ADD6092AE", columns={"idLaboratorio"})})
  * @ORM\Entity
  */
 class Guiaestabilidad
@@ -176,8 +176,12 @@ class Guiaestabilidad
     private $tipo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Laboratorio", inversedBy="idlaboratorio")
-     * @ORM\JoinColumn(name="idLaboratorio", referencedColumnName="id")
+     * @var \Laboratorio
+     *
+     * @ORM\ManyToOne(targetEntity="Laboratorio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idLaboratorio", referencedColumnName="id")
+     * })
      */
     private $idlaboratorio;
 
@@ -724,11 +728,11 @@ class Guiaestabilidad
     /**
      * Set idlaboratorio
      *
-     * @param integer $idlaboratorio
+     * @param \AppBundle\Entity\Laboratorio $idlaboratorio
      *
      * @return Guiaestabilidad
      */
-    public function setIdlaboratorio($idlaboratorio)
+    public function setIdlaboratorio(\AppBundle\Entity\Laboratorio $idlaboratorio = null)
     {
         $this->idlaboratorio = $idlaboratorio;
 
@@ -738,7 +742,7 @@ class Guiaestabilidad
     /**
      * Get idlaboratorio
      *
-     * @return integer
+     * @return \AppBundle\Entity\Laboratorio
      */
     public function getIdlaboratorio()
     {

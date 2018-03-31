@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Laboratorio
+ * Insumo
  *
- * @ORM\Table(name="laboratorio")
+ * @ORM\Table(name="insumo")
  * @ORM\Entity
  */
-class Laboratorio
+class Insumo
 {
     /**
      * @var integer
@@ -24,23 +24,23 @@ class Laboratorio
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=150, nullable=false)
+     * @ORM\Column(name="nombre_insumo", type="string", length=150, nullable=false)
      */
-    private $nombre;
+    private $nombreInsumo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="string", length=200, nullable=false)
+     * @ORM\Column(name="lote", type="string", length=50, nullable=false)
      */
-    private $contacto;
+    private $lote;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="telContacto", type="string", length=20, nullable=false)
+     * @ORM\Column(name="fecha_vencimiento", type="date", nullable=false)
      */
-    private $telcontacto;
+    private $fechaVencimiento;
 
     /**
      * @var \DateTime
@@ -54,7 +54,6 @@ class Laboratorio
         $this->current = new \DateTime();
     }    
 
-
     /**
      * Get id
      *
@@ -66,75 +65,75 @@ class Laboratorio
     }
 
     /**
-     * Set nombre
+     * Set nombreInsumo
      *
-     * @param string $nombre
+     * @param string $nombreInsumo
      *
-     * @return Laboratorio
+     * @return Medicamento
      */
-    public function setNombre($nombre)
+    public function setNombreInsumo($nombreInsumo)
     {
-        $this->nombre = $nombre;
+        $this->nombreInsumo = $nombreInsumo;
 
         return $this;
     }
 
     /**
-     * Get nombre
+     * Get nombreInsumo
      *
      * @return string
      */
-    public function getNombre()
+    public function getNombreInsumo()
     {
-        return $this->nombre;
+        return $this->nombreInsumo;
     }
 
     /**
-     * Set contacto
+     * Set lote
      *
-     * @param string $contacto
+     * @param string $lote
      *
-     * @return Laboratorio
+     * @return Medicamento
      */
-    public function setContacto($contacto)
+    public function setLote($lote)
     {
-        $this->contacto = $contacto;
+        $this->lote = $lote;
 
         return $this;
     }
 
     /**
-     * Get contacto
+     * Get lote
      *
      * @return string
      */
-    public function getContacto()
+    public function getLote()
     {
-        return $this->contacto;
+        return $this->lote;
     }
 
     /**
-     * Set telcontacto
+     * Set fechaVencimiento
      *
-     * @param string $telcontacto
+     * @param \DateTime $fechaVencimiento
      *
-     * @return Laboratorio
+     * @return Medicamento
      */
-    public function setTelcontacto($telcontacto)
+    public function setFechaVencimiento($fechaVencimiento)
     {
-        $this->telcontacto = $telcontacto;
+        $this->fechaVencimiento = $fechaVencimiento;
 
         return $this;
     }
 
     /**
-     * Get telcontacto
+     * Get fechaVencimiento
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getTelcontacto()
+    public function getFechaVencimiento()
     {
-        return $this->telcontacto;
+        return $this->fechaVencimiento;
     }
 
     /**
@@ -142,7 +141,7 @@ class Laboratorio
      *
      * @param \DateTime $current
      *
-     * @return Laboratorio
+     * @return Medicamento
      */
     public function setCurrent($current)
     {
@@ -159,5 +158,6 @@ class Laboratorio
     public function getCurrent()
     {
         return $this->current;
-    }
+    }    
+    
 }

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicamento</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medicamento.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombremedicamento</th>
+                <td>{{ medicamento.nombreMedicamento }}</td>
+            </tr>
+            <tr>
+                <th>Presentacionexistencia</th>
+                <td>{{ medicamento.presentacionExistencia }}</td>
+            </tr>
+            <tr>
+                <th>Lote</th>
+                <td>{{ medicamento.lote }}</td>
+            </tr>
+            <tr>
+                <th>Fechavencimiento</th>
+                <td>{% if medicamento.fechaVencimiento %}{{ medicamento.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td>{% if medicamento.current %}{{ medicamento.current|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicamento_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('medicamento_edit', { 'id': medicamento.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

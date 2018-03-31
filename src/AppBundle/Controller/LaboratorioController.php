@@ -5,7 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Laboratorio;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * Laboratorio controller.
@@ -40,7 +43,12 @@ class LaboratorioController extends Controller
     public function newAction(Request $request)
     {
         $laboratorio = new Laboratorio();
-        $form = $this->createForm('AppBundle\Form\LaboratorioType', $laboratorio);
+        $form = $this->createFormBuilder($laboratorio)
+                ->add('nombre', TextType::class,array('label'=>'Laboratorio','attr'=>array('class'=>'form-control')))
+                ->add('contacto', TextType::class,array('label'=>'Contacto','attr'=>array('class'=>'form-control')))
+                ->add('telcontacto', TextType::class,array('label'=>'Teléfono Contacto','attr'=>array('class'=>'form-control')))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-primary')))
+                ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

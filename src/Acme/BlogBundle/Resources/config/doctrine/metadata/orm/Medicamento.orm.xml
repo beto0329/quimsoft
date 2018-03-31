@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Laboratorio" table="laboratorio">
+  <entity name="Medicamento" table="medicamento">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="nombre" type="string" column="nombre" length="150" nullable="false">
+    <field name="nombreMedicamento" type="string" column="nombre_medicamento" length="150" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="contacto" type="string" column="contacto" length="200" nullable="false">
+    <field name="presentacionExistencia" type="string" column="presentacion_existencia" length="150" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="telcontacto" type="string" column="telContacto" length="20" nullable="false">
+    <field name="lote" type="string" column="lote" length="50" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
     </field>
-    <field name="current" type="datetime" column="current" nullable="false"/>
+    <field name="fechaVencimiento" type="date" column="fecha_vencimiento" nullable="false"/>
+    <field name="current" type="datetime" column="current" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
   </entity>
 </doctrine-mapping>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicamentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombremedicamento</th>
+                <th>Presentacionexistencia</th>
+                <th>Lote</th>
+                <th>Fechavencimiento</th>
+                <th>Current</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicamento in medicamentos %}
+            <tr>
+                <td><a href="{{ path('medicamento_show', { 'id': medicamento.id }) }}">{{ medicamento.id }}</a></td>
+                <td>{{ medicamento.nombreMedicamento }}</td>
+                <td>{{ medicamento.presentacionExistencia }}</td>
+                <td>{{ medicamento.lote }}</td>
+                <td>{% if medicamento.fechaVencimiento %}{{ medicamento.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if medicamento.current %}{{ medicamento.current|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medicamento_show', { 'id': medicamento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medicamento_edit', { 'id': medicamento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicamento_new') }}">Create a new medicamento</a>
+        </li>
+    </ul>
+{% endblock %}

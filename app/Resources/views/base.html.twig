@@ -18,6 +18,21 @@
                 text-align: center;
                 z-index: 999999;
             }
+            
+            .dropdown-menu{
+                background-color: #222;
+                border-color: #080808;
+                &>li>a{
+                  color: #999;
+                  &:hover{
+                    color: #fff;
+                    background-color: #000;
+                  }
+                }
+                &>.divider {
+                  background-color: #000;
+                }
+              }
         </style>
     </head>
     <body>
@@ -34,9 +49,16 @@
                     <a href="#" class="pull-left navbar-brand" >QUIMSOFT</a>
                     <div class="collapse navbar-collapse navbar-ex1-collapse" id="bs-example-navbar-collapse-9">
                         <ul class="nav navbar-nav side-nav">                            
-                            <li><a href="{{ path('laboratorio_index') }}">Maestro Laboratorios</a></li>
-                            <li><a href="{{ path('guiaestabilidad_index') }}">Maestro Guía Estabilidad</a></li> 
-                            <li><a href="#" class="bottom" >Maestro Medicamentos</a></li> 
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Maestros <span class="caret"></span></a>
+                                <ul class="dropdown-menu">                     
+                                    <li><a href="{{ path('laboratorio_index') }}">Maestro Laboratorios</a></li>
+                                    <li><a href="{{ path('guiaestabilidad_index') }}">Maestro Guía Estabilidad</a></li> 
+                                    <li><a href="{{ path('medicamento_index') }}" class="bottom" >Maestro Medicamentos</a></li> 
+                                    <li><a href="{{ path('insumo_index') }}" class="bottom" >Maestro Insumos</a></li> 
+                                    <li><a href="{{ path('vehiculo_index') }}" class="bottom" >Maestro Vehículos</a></li> 
+                                </ul> 
+                            </li> 
                         </ul> 
                     </div>
                         
@@ -73,6 +95,14 @@
                 '@AppBundle/Resources/public/js/bootstrap-datepicker.es.min.js'%}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
+            <script>
+                $('.datepicker').datepicker({
+                        language: 'es',
+                        autoclose: true,
+                        format: 'yyyy-mm-dd',
+                        minDate: new date(),
+                    });
+            </script>
         {% endblock %}
     </body>
 </html>

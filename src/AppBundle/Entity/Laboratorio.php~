@@ -47,7 +47,7 @@ class Laboratorio
      *
      * @ORM\Column(name="current", type="datetime", nullable=false)
      */
-    private $current = 'CURRENT_TIMESTAMP';
+    private $current;
 
 
 }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vehiculos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombrevehiculo</th>
+                <th>Lote</th>
+                <th>Fechavencimiento</th>
+                <th>Current</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehiculo in vehiculos %}
+            <tr>
+                <td><a href="{{ path('vehiculo_show', { 'id': vehiculo.id }) }}">{{ vehiculo.id }}</a></td>
+                <td>{{ vehiculo.nombreVehiculo }}</td>
+                <td>{{ vehiculo.lote }}</td>
+                <td>{% if vehiculo.fechaVencimiento %}{{ vehiculo.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if vehiculo.current %}{{ vehiculo.current|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vehiculo_show', { 'id': vehiculo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vehiculo_edit', { 'id': vehiculo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vehiculo_new') }}">Create a new vehiculo</a>
+        </li>
+    </ul>
+{% endblock %}
