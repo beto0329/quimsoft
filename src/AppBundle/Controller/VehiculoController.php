@@ -5,7 +5,11 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Vehiculo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Vehiculo controller.
@@ -40,7 +44,16 @@ class VehiculoController extends Controller
     public function newAction(Request $request)
     {
         $vehiculo = new Vehiculo();
-        $form = $this->createForm('AppBundle\Form\VehiculoType', $vehiculo);
+        $form = $this->createFormBuilder($vehiculo)
+                ->add('nombreVehiculo', TextType::class,array('label'=>'Nombre Vehiculo','attr'=>array('class'=>'form-control')))
+                ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control')))
+                ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
+                    'class' => 'form-control input-inline datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'yyyy-mm-dd'
+                )))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
+                ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +61,7 @@ class VehiculoController extends Controller
             $em->persist($vehiculo);
             $em->flush();
 
-            return $this->redirectToRoute('vehiculo_show', array('id' => $vehiculo->getId()));
+            return $this->redirectToRoute('vehiculo_index');
         }
 
         return $this->render('vehiculo/new.html.twig', array(
