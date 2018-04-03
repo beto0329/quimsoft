@@ -61,7 +61,7 @@ class MedicamentoController extends Controller
                     'attr'=>array('class'=>'form-control selectpicker'),
                     'data' => 'Seleccionar'
                 ))
-                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-primary')))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
                 ->getForm();
         $form->handleRequest($request);
 
@@ -70,7 +70,7 @@ class MedicamentoController extends Controller
             $em->persist($medicamento);
             $em->flush();
 
-            return $this->redirectToRoute('medicamento_show', array('id' => $medicamento->getId()));
+            return $this->redirectToRoute('medicamento_index');
         }
 
         return $this->render('medicamento/new.html.twig', array(
@@ -104,13 +104,30 @@ class MedicamentoController extends Controller
     public function editAction(Request $request, Medicamento $medicamento)
     {
         $deleteForm = $this->createDeleteForm($medicamento);
-        $editForm = $this->createForm('AppBundle\Form\MedicamentoType', $medicamento);
-        $editForm->handleRequest($request);
+        $fecha = date_format($medicamento->getFechaVencimiento(), 'Y-m-d');
+        $editForm = $this->createFormBuilder($medicamento)
+                ->add('nombreMedicamento', TextType::class,array('label'=>'Nombre Medicamento','attr'=>array('class'=>'form-control','value'=>$medicamento->getNombreMedicamento())))
+                ->add('presentacionExistencia', TextType::class,array('label'=>'Presentación en Existencia','attr'=>array('class'=>'form-control','value'=>$medicamento->getPresentacionExistencia())))
+                ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control','value'=>$medicamento->getLote())))
+                ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
+                    'class' => 'form-control input-inline datepicker',
+                    'value'=>$fecha,
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'yyyy-mm-dd'
+                )))
+                ->add('idlaboratorio', EntityType::class, array(
+                    'class' => Laboratorio::class,
+                    'choice_label' => 'nombre',
+                    'attr'=>array('class'=>'form-control selectpicker'),
+                    'data' => $medicamento->getIdlaboratorio()
+                ))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
+                ->getForm();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('medicamento_edit', array('id' => $medicamento->getId()));
+            return $this->redirectToRoute('medicamento_index');
         }
 
         return $this->render('medicamento/edit.html.twig', array(
