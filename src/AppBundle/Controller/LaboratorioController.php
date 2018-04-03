@@ -47,7 +47,7 @@ class LaboratorioController extends Controller
                 ->add('nombre', TextType::class,array('label'=>'Laboratorio','attr'=>array('class'=>'form-control')))
                 ->add('contacto', TextType::class,array('label'=>'Contacto','attr'=>array('class'=>'form-control')))
                 ->add('telcontacto', TextType::class,array('label'=>'Teléfono Contacto','attr'=>array('class'=>'form-control')))
-                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-primary')))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-4')))
                 ->getForm();
         $form->handleRequest($request);
 
@@ -56,7 +56,7 @@ class LaboratorioController extends Controller
             $em->persist($laboratorio);
             $em->flush();
 
-            return $this->redirectToRoute('laboratorio_show', array('id' => $laboratorio->getId()));
+            return $this->redirectToRoute('laboratorio_index');
         }
 
         return $this->render('laboratorio/new.html.twig', array(

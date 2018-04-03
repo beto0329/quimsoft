@@ -1,36 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Laboratorios list</h1>
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>Laboratorios</h2> <a href="{{ path('laboratorio_new') }}" class="btn btn-info pull-right" >Crear Laboratorio</a></div>
+            <div class="panel-body">
+                <table id='labTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Contacto</th>
+                            <th>Telcontacto</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for laboratorio in laboratorios %}
+                        <tr>
+                            <td><a href="{{ path('laboratorio_show', { 'id': laboratorio.id }) }}">{{ laboratorio.id }}</a></td>
+                            <td>{{ laboratorio.nombre }}</td>
+                            <td>{{ laboratorio.contacto }}</td>
+                            <td>{{ laboratorio.telcontacto }}</td>
+                            <td>
+                                <a href="{{ path('laboratorio_edit', { 'id': laboratorio.id }) }}" class="btn btn-info" >editar </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>       
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Contacto</th>
-                <th>Telcontacto</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for laboratorio in laboratorios %}
-            <tr>
-                <td><a href="{{ path('laboratorio_show', { 'id': laboratorio.id }) }}">{{ laboratorio.id }}</a></td>
-                <td>{{ laboratorio.nombre }}</td>
-                <td>{{ laboratorio.contacto }}</td>
-                <td>{{ laboratorio.telcontacto }}</td>
-                <td>
-                    <a href="{{ path('laboratorio_edit', { 'id': laboratorio.id }) }}" class="btn btn-default" >edit</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('laboratorio_new') }}">Create a new laboratorio</a>
-        </li>
-    </ul>
 {% endblock %}
