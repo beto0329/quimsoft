@@ -68,17 +68,18 @@ class GuiaestabilidadController extends Controller
                 ->add('estabilidadmezclahoras', TextType::class,array('label'=>'Estabilidad Mezcla en Horas','attr'=>array('class'=>'form-control')))
                 ->add('estabilidadsobrantedias', TextType::class,array('label'=>'Estabilidad Sobrante en Días','attr'=>array('class'=>'form-control')))
                 ->add('estabilidadsobrantehoras', TextType::class,array('label'=>'Estabilidad Sobrante en Horas','attr'=>array('class'=>'form-control')))
-                ->add('condialmacensobrante', TextType::class,array('label'=>'Condiciones Almacenamiento Sobrante','attr'=>array('class'=>'form-control')))
+                ->add('condialmacensobrante', TextType::class,array('label'=>'Condi. Almacenamiento Sobrante','attr'=>array('class'=>'form-control')))
                 ->add('grupoterapeutico', TextType::class,array('label'=>'Grupo Terapéutico','attr'=>array('class'=>'form-control')))
                 ->add('ordencampana', TextType::class,array('label'=>'Orden Campaña','attr'=>array('class'=>'form-control')))
                 ->add('referencia', TextType::class,array('label'=>'Referencia','attr'=>array('class'=>'form-control')))
                 ->add('tiempoinfusion', TextType::class,array('label'=>'Tiempo Infusión','attr'=>array('class'=>'form-control')))
+                ->add('tipo', TextType::class,array('label'=>'Tipo','attr'=>array('class'=>'form-control')))
                 ->add('idlaboratorio', EntityType::class, array(
                     'class' => Laboratorio::class,
                     'choice_label' => 'nombre',
                     'attr'=>array('class'=>'form-control selectpicker')
                 ))
-                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-primary')))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-success')))
                 ->getForm();
 
         $form->handleRequest($request);

@@ -9,19 +9,22 @@
             {{ form_widget(form.nombre) }}
             {{ form_errors(form.nombre) }}
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
             {{ form_label(form.contacto) }}
             {{ form_widget(form.contacto) }}
             {{ form_errors(form.contacto) }}
         </div>
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
             {{ form_label(form.telcontacto) }}
             {{ form_widget(form.telcontacto) }}
             {{ form_errors(form.telcontacto) }}
         </div>
-        <div class="form-group col-md-12">
-                {{ form_label(form.save) }}
-        {{ form_end(form) }}
-                <a href="{{ path('laboratorio_index') }}" class="btn btn-danger col-md-4 pull-right">Cancelar</a>
-        </div>    
+        <hr>
+        <div class="form-group col-md-6">
+            {{ form_label(form.save) }}
+            {{ form_end(form) }}
+        </div>  
+        <div class="form-group col-md-6">
+            <a href="{{ path('guiaestabilidad_index') }}" class="btn btn-danger col-md-5">Cancelar</a>
+        </div>  
 {% endblock %}

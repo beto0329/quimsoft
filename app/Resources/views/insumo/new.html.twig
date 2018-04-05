@@ -1,16 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Insumo creation</h1>
-
+    <h1><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>Nuevo Insumo</h1>
+    
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="form-group col-md-12">
+            {{ form_label(form.nombreInsumo) }}
+            {{ form_widget(form.nombreInsumo) }}
+            {{ form_errors(form.nombreInsumo) }}
+    </div>  
+    <div class="form-group col-md-6">
+        {{ form_label(form.lote) }}
+        {{ form_widget(form.lote) }}
+        {{ form_errors(form.lote) }}
+    </div>
+    <div class="form-group col-md-6">
+        {{ form_label(form.fechaVencimiento) }}
+        {{ form_widget(form.fechaVencimiento) }}
+        {{ form_errors(form.fechaVencimiento) }}
+    </div>
+    <div class="form-group col-md-6">
+        {{ form_label(form.save) }}
+        {{ form_end(form) }}
+    </div>     
+    <div class="form-group col-md-6">
+        <a href="{{ path('insumo_index') }}" class="btn btn-danger col-md-5">Cancelar</a>
+    </div> 
 
-    <ul>
-        <li>
-            <a href="{{ path('insumo_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
