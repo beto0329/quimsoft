@@ -8,31 +8,29 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombremedicamento</th>
-                            <th>Nombrelasa</th>
-                            <th>Presentacion</th>
-                            <th>Unidad Mediad</th
+                            <th>Nombre Medicamento</th>
+                            <th>Nombre LASA</th>
+                            <th>Presentacion Favorita</th>
+                            <th>Unidad Mediad</th>
                             <th>Envase</th>
-                            <th>Condicionesalmacenamiento</th>
+                            <th>Condiciones Almacenamiento</th>
                             <th>Fotosensible</th>
-                            <th>Laboratorio</th>
-                            <th>Actions</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for guiaestabilidad in guiaestabilidads %}
                         <tr>
                             <td><a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">{{ guiaestabilidad.id }}</a></td>
-                            <td>{{ guiaestabilidad.nombremedicamento }}</td>
+                            <td>{{ guiaestabilidad.medicamentoLaboratorio }}</td>
                             <td>{{ guiaestabilidad.nombrelasa }}</td>
                             <td>{{ guiaestabilidad.presentacionfavorita }}</td>
                             <td>{{ guiaestabilidad.unidadmediad }}</td>
                             <td>{{ guiaestabilidad.envase }}</td>
                             <td>{{ guiaestabilidad.condicionesalmacenamiento }}</td>
                             <td>{% if guiaestabilidad.fotosensible %}Yes{% else %}No{% endif %}</td>
-                            <td>{{ guiaestabilidad.laboratorio }}</td>
                             <td>
-                                <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}" class="btn btn-default" >editar</a>
+                                <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}" class="btn btn-info" >editar</a>
                             </td>
                         </tr>
                     {% endfor %}

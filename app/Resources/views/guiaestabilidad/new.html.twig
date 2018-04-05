@@ -6,7 +6,7 @@
     {{ form_start(form) }}
         <div class="col-md-6" >
             {{ form_label(form.idmedicamento) }}
-            {{ form_widget(form.idmedicamento) }}
+            {{ form_widget(form.idmedicamento,{ 'id': 'medLab'}) }}
             {{ form_errors(form.idmedicamento) }}
         </div>
         <div class="col-md-3" >
@@ -130,3 +130,12 @@
         </div>
     {{ form_end(form) }}
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('#medLab').append('<option selected disabled>Seleccionar</option>');
+        });
+    </script>    
+{% endblock %}
+

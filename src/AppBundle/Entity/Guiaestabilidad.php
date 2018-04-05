@@ -24,13 +24,6 @@ class Guiaestabilidad
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreMedicamento", type="string", length=150, nullable=false)
-     */
-    private $nombremedicamento;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="nombreLasa", type="string", length=150, nullable=false)
      */
     private $nombrelasa;
@@ -206,31 +199,7 @@ class Guiaestabilidad
     {
         return $this->id;
     }
-
-    /**
-     * Set nombremedicamento
-     *
-     * @param string $nombremedicamento
-     *
-     * @return Guiaestabilidad
-     */
-    public function setNombremedicamento($nombremedicamento)
-    {
-        $this->nombremedicamento = $nombremedicamento;
-
-        return $this;
-    }
-
-    /**
-     * Get nombremedicamento
-     *
-     * @return string
-     */
-    public function getNombremedicamento()
-    {
-        return $this->nombremedicamento;
-    }
-
+    
     /**
      * Set nombrelasa
      *

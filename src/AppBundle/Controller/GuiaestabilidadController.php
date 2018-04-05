@@ -29,9 +29,8 @@ class GuiaestabilidadController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $guiaestabilidads = $em->getRepository('AppBundle:Guiaestabilidad')->findAll();
-
+        $queryGuia = $em->createQuery("SELECT g.id, m.medicamentoLaboratorio, g.nombrelasa, g.presentacionfavorita, g.unidadmediad, g.envase, g.condicionesalmacenamiento, g.fotosensible FROM AppBundle\Entity\Guiaestabilidad g JOIN g.idmedicamento m ORDER BY g.id ASC ");
+        $guiaestabilidads = $queryGuia->getResult();
         return $this->render('guiaestabilidad/index.html.twig', array(
             'guiaestabilidads' => $guiaestabilidads,
         ));
@@ -94,7 +93,7 @@ class GuiaestabilidadController extends Controller
             $em->persist($guiaestabilidad);
             $em->flush();
 
-            return $this->redirectToRoute('guiaestabilidad_show', array('id' => $guiaestabilidad->getId()));
+            return $this->redirectToRoute('guiaestabilidad_index');
         }
 
         return $this->render('guiaestabilidad/new.html.twig', array(
