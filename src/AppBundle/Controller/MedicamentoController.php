@@ -32,7 +32,7 @@ class MedicamentoController extends Controller
 
 //        $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
 //        $laboratorio = $em->getRepository('AppBundle:Laboratorio')->find($medicamentos->getIdlaboratorio());
-        $queryMedicamento = $em->createQuery("SELECT m.id, m.nombreMedicamento, m.presentacionExistencia, m.lote, m.fechaVencimiento, l.nombre FROM AppBundle\Entity\Medicamento m JOIN m.idlaboratorio l ");
+        $queryMedicamento = $em->createQuery("SELECT m.id, m.nombreMedicamento, m.medicamentoLaboratorio, m.presentacionExistencia, m.lote, m.fechaVencimiento, l.nombre FROM AppBundle\Entity\Medicamento m JOIN m.idlaboratorio l ");
         $medicamentos = $queryMedicamento->getResult();
         return $this->render('medicamento/index.html.twig', array(
             'medicamentos' => $medicamentos,
@@ -111,6 +111,7 @@ class MedicamentoController extends Controller
         $fecha = date_format($medicamento->getFechaVencimiento(), 'Y-m-d');
         $editForm = $this->createFormBuilder($medicamento)
                 ->add('nombreMedicamento', TextType::class,array('label'=>'Nombre Medicamento','attr'=>array('class'=>'form-control','value'=>$medicamento->getNombreMedicamento())))
+                ->add('medicamentoLaboratorio', TextType::class,array('label'=>'Medicamento+Laboratorio','attr'=>array('class'=>'form-control','value'=>$medicamento->getMedicamentoLaboratorio())))
                 ->add('presentacionExistencia', TextType::class,array('label'=>'Presentación en Existencia','attr'=>array('class'=>'form-control','value'=>$medicamento->getPresentacionExistencia())))
                 ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control','value'=>$medicamento->getLote())))
                 ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
@@ -125,7 +126,7 @@ class MedicamentoController extends Controller
                     'attr'=>array('class'=>'form-control selectpicker'),
                     'data' => $medicamento->getIdlaboratorio()
                 ))
-                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success form-control')))
                 ->getForm();
         $editForm->handleRequest($request);
         
