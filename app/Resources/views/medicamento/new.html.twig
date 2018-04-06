@@ -6,8 +6,18 @@
     {{ form_start(form) }}
         <div class="form-group col-md-6">
             {{ form_label(form.nombreMedicamento) }}
-            {{ form_widget(form.nombreMedicamento) }}
+            {{ form_widget(form.nombreMedicamento, { 'id': 'nomMed'}) }}
             {{ form_errors(form.nombreMedicamento) }}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="idlaboratorio" >Laboratorio</label>
+            {{ form_widget(form.idlaboratorio, { 'id': 'nomLab'}) }}
+            {{ form_errors(form.idlaboratorio) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.medicamentoLaboratorio) }}
+            {{ form_widget(form.medicamentoLaboratorio, { 'id': 'medLab'}) }}
+            {{ form_errors(form.medicamentoLaboratorio) }}
         </div>
         <div class="form-group col-md-6">
             {{ form_label(form.presentacionExistencia) }}
@@ -23,16 +33,26 @@
             {{ form_label(form.fechaVencimiento) }}
             {{ form_widget(form.fechaVencimiento) }}
             {{ form_errors(form.fechaVencimiento) }}
-        </div>
-        <div class="form-group col-md-6">
-            <label for="idlaboratorio" >Laboratorio</label>
-            {{ form_widget(form.idlaboratorio) }}
-            {{ form_errors(form.idlaboratorio) }}
-        </div>
+        </div> 
         <div class="form-group col-md-6">
             {{ form_label(form.save) }}
             {{ form_end(form) }}
-            <a href="{{ path('medicamento_index') }}" class="btn btn-danger col-md-5 pull-right">Cancelar</a>
         </div> 
+        <div class="form-group col-md-6">
+            <a href="{{ path('medicamento_index') }}" class="btn btn-danger col-md-5 pull-right">Cancelar</a>
+        </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('#nomLab').change(function(){
+                var nomMed = $('#nomMed').val();
+                var nomLab = $(this).find("option:selected").text();
+                
+                $('#medLab').val(nomMed+'( '+nomLab+' )');
+            });
+        });
+    </script>    
 {% endblock %}

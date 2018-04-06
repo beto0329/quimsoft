@@ -90,13 +90,18 @@ class LaboratorioController extends Controller
     public function editAction(Request $request, Laboratorio $laboratorio)
     {
         $deleteForm = $this->createDeleteForm($laboratorio);
-        $editForm = $this->createForm('AppBundle\Form\LaboratorioType', $laboratorio);
+        $editForm = $this->createFormBuilder($laboratorio)
+                ->add('nombre', TextType::class,array('label'=>'Laboratorio','attr'=>array('class'=>'form-control','value'=>$laboratorio->getNombre())))
+                ->add('contacto', TextType::class,array('label'=>'Contacto','attr'=>array('class'=>'form-control','value'=>$laboratorio->getContacto())))
+                ->add('telcontacto', TextType::class,array('label'=>'Teléfono Contacto','attr'=>array('class'=>'form-control','value'=>$laboratorio->getTelcontacto())))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-4')))
+                ->getForm();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('laboratorio_edit', array('id' => $laboratorio->getId()));
+            return $this->redirectToRoute('laboratorio_index');
         }
 
         return $this->render('laboratorio/edit.html.twig', array(

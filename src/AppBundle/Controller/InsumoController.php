@@ -5,7 +5,11 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Insumo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Insumo controller.
@@ -40,8 +44,18 @@ class InsumoController extends Controller
     public function newAction(Request $request)
     {
         $insumo = new Insumo();
-        $form = $this->createForm('AppBundle\Form\InsumoType', $insumo);
+        $form = $this->createFormBuilder($insumo)
+                ->add('nombreInsumo', TextType::class,array('label'=>'Nombre Vehiculo','attr'=>array('class'=>'form-control')))
+                ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control')))
+                ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
+                    'class' => 'form-control input-inline datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'yyyy-mm-dd'
+                )))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
+                ->getForm();
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -82,13 +96,24 @@ class InsumoController extends Controller
     public function editAction(Request $request, Insumo $insumo)
     {
         $deleteForm = $this->createDeleteForm($insumo);
-        $editForm = $this->createForm('AppBundle\Form\InsumoType', $insumo);
+        $fecha = date_format($insumo->getFechaVencimiento(), 'Y-m-d');
+        $editForm = $this->createFormBuilder($insumo)
+                ->add('nombreInsumo', TextType::class,array('label'=>'Nombre Vehiculo','attr'=>array('class'=>'form-control','value'=>$insumo->getNombreInsumo())))
+                ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control','value'=>$insumo->getLote())))
+                ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
+                    'class' => 'form-control input-inline datepicker',
+                    'value'=>$fecha,
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'yyyy-mm-dd'
+                )))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
+                ->getForm();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('insumo_edit', array('id' => $insumo->getId()));
+            return $this->redirectToRoute('insumo_index');
         }
 
         return $this->render('insumo/edit.html.twig', array(

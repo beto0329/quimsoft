@@ -24,13 +24,6 @@ class Guiaestabilidad
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreMedicamento", type="string", length=150, nullable=false)
-     */
-    private $nombremedicamento;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="nombreLasa", type="string", length=150, nullable=false)
      */
     private $nombrelasa;
@@ -184,6 +177,16 @@ class Guiaestabilidad
      * })
      */
     private $idlaboratorio;
+    
+    /**
+     * @var \Medicamento
+     *
+     * @ORM\ManyToOne(targetEntity="Medicamento")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idMedicamento", referencedColumnName="id")
+     * })
+     */
+    private $idmedicamento;
 
 
 
@@ -196,31 +199,7 @@ class Guiaestabilidad
     {
         return $this->id;
     }
-
-    /**
-     * Set nombremedicamento
-     *
-     * @param string $nombremedicamento
-     *
-     * @return Guiaestabilidad
-     */
-    public function setNombremedicamento($nombremedicamento)
-    {
-        $this->nombremedicamento = $nombremedicamento;
-
-        return $this;
-    }
-
-    /**
-     * Get nombremedicamento
-     *
-     * @return string
-     */
-    public function getNombremedicamento()
-    {
-        return $this->nombremedicamento;
-    }
-
+    
     /**
      * Set nombrelasa
      *
@@ -747,5 +726,29 @@ class Guiaestabilidad
     public function getIdlaboratorio()
     {
         return $this->idlaboratorio;
+    }
+    
+    /**
+     * Set idmedicamento
+     *
+     * @param \AppBundle\Entity\Medicamento $idmedicamento
+     *
+     * @return Guiaestabilidad
+     */
+    public function setIdmedicamento(\AppBundle\Entity\Medicamento $idmedicamento = null)
+    {
+        $this->idmedicamento = $idmedicamento;
+
+        return $this;
+    }
+
+    /**
+     * Get $idmedicamento
+     *
+     * @return \AppBundle\Entity\Medicamento
+     */
+    public function getIdmedicamento()
+    {
+        return $this->idmedicamento;
     }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}QuimSoft{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        {# <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> #}
+    </head>
+    <body>        
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                    {% block fos_user_content %}{% endblock fos_user_content %}        
+
+            </div>
+            <!-- /.container-fluid -->
+        </div>                 
+       
+        {% block javascripts %}
+            {% javascripts 
+                '@AppBundle/Resources/public/js/jquery.js'
+                '@AppBundle/Resources/public/js/jquery.ui.js'
+                '@AppBundle/Resources/public/js/jquery-1.12.4.js'
+                '@AppBundle/Resources/public/js/jquery.dataTables.min.js'
+                '@AppBundle/Resources/public/js/dataTables.buttons.min.js'
+                '@AppBundle/Resources/public/js/bootstrap.min.js'
+                '@AppBundle/Resources/public/js/bootstrap-select.js'
+                '@AppBundle/Resources/public/js/bootstrap-datepicker.js'
+                '@AppBundle/Resources/public/js/bootstrap-datepicker.min.js'
+                '@AppBundle/Resources/public/js/bootstrap-datepicker.es.min.js'%}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script>
+                $('.datepicker').datepicker({
+                        language: 'es',
+                        autoclose: true,
+                        format: 'yyyy-mm-dd',
+                    });
+                    
+                    $('.table').DataTable();
+            </script>
+        {% endblock %}
+    </body>
+</html>
