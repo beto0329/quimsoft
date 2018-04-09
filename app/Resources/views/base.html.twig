@@ -33,6 +33,7 @@
                         </a>
                     </div>
                     <a href="#" class="pull-left navbar-brand" >QUIMSOFT</a>
+                    <a href="{{ path('fos_user_security_logout') }}" class="pull-right navbar-brand" ><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Salir</a>
                     <div class="collapse navbar-collapse navbar-ex1-collapse" id="bs-example-navbar-collapse-9">
                         <ul class="nav navbar-nav side-nav">                            
                             <li class="dropdown">
@@ -43,11 +44,13 @@
                                     <li><a href="{{ path('medicamento_index') }}" class="bottom" >Maestro Medicamentos</a></li> 
                                     <li><a href="{{ path('insumo_index') }}" class="bottom" >Maestro Insumos</a></li> 
                                     <li><a href="{{ path('vehiculo_index') }}" class="bottom" >Maestro Vehículos</a></li> 
+                                    <li><a href="{{ path('fos_user_registration_register') }}" >Maestro Usuarios</a></li>
                                 </ul> 
-                            </li> 
+                            </li>
+                            <li><a href="{{ path('orden_index') }}" >Orden Producción</a></li>
                         </ul> 
                     </div>
-                        
+                        {#{{ render(controller('AppBundle:Default:menu')) }}#}
                 </div>
             </nav> 
             <div id="page-wrapper">
