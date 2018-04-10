@@ -1,16 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Orden creation</h1>
+    <h1><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Crear Orden</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('orden_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="form-group col-md-6">
+            {{ form_label(form.fechaProduccion) }}
+            {{ form_widget(form.fechaProduccion) }}
+            {{ form_errors(form.fechaProduccion) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.horaProduccion) }}
+            {{ form_widget(form.horaProduccion) }}
+            {{ form_errors(form.horaProduccion) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.lineaProduccion) }}
+            {{ form_widget(form.lineaProduccion) }}
+            {{ form_errors(form.lineaProduccion) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.idUserInterpreta) }}
+            {{ form_widget(form.idUserInterpreta) }}
+            {{ form_errors(form.idUserInterpreta) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.idUserProduccion) }}
+            {{ form_widget(form.idUserProduccion) }}
+            {{ form_errors(form.idUserProduccion) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.idUserCalidad) }}
+            {{ form_widget(form.idUserCalidad) }}
+            {{ form_errors(form.idUserCalidad) }}
+        </div>
+        <hr>
+        <div class="form-group col-md-6">
+            {{ form_label(form.save) }}
+            {{ form_end(form) }}
+        </div>  
+        <div class="form-group col-md-6">
+            <a href="{{ path('guiaestabilidad_index') }}" class="btn btn-danger col-md-5">Cancelar</a>
+        </div>  
 {% endblock %}

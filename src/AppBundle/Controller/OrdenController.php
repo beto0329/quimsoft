@@ -48,55 +48,58 @@ class OrdenController extends Controller
     {
         $orden = new Orden();
         $form = $this->createFormBuilder($orden)
-                 ->add('fechaProduccion', DateType::class,array('label'=>'Fecha de Producción','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
-                    'class' => 'form-control input-inline datepicker',
-                    'data-provide' => 'datepicker',
-                    'data-date-format' => 'yyyy-mm-dd'
+                 ->add('fechaProduccion', DateType::class,array(
+                    'label'=>'Fecha de Producción',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-mm-dd',
+                    'attr'=>array(
+                    'class' => 'form-control datepicker',
                 )))
                 ->add('horaProduccion', TimeType::class, array(
                     'label'=>'Hora de Producción',
-                    'input'  => 'datetime',
-                    'widget' => 'choice',
+                    'widget' => 'single_text',
                     'attr'=>array(
-                    'class' => 'form-control input-inline datepicker',
-                    'data-provide' => 'datepicker',
-                    'data-date-format' => 'yyyy-mm-dd'
+                    'class' => 'form-control datepicker',
                 )))
                 ->add('lineaProduccion', TextType::class,array('label'=>'Línea de Producción','attr'=>array('class'=>'form-control')))
-                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
                 ->add('idUserInterpreta', EntityType::class, array(
+                    'label' => 'QF Interpretación',
                     'class' => User::class,
-                    'query_builder' => function (EntityRepository $er) {
+                    'query_builder' => function ($er) {
                         return $er->createQueryBuilder('u')
-                            ->where('u.role LIKE :role')
-                            ->setParameter('role','ROLE_REGENTE');
+                            ->where('u.roles LIKE :role')
+                            ->setParameter('role','%ROLE_REGENTE%')
+                            ->orderBy('u.username', 'ASC');
                     },
                     'choice_label' => 'nombre',
                     'attr'=>array('class'=>'form-control selectpicker'),
                     'data' => 'Seleccionar'
                 ))
                 ->add('idUserProduccion', EntityType::class, array(
+                    'label' => 'QF Producción',
                     'class' => User::class,
-                    'query_builder' => function (EntityRepository $er) {
+                    'query_builder' => function ($er) {
                         return $er->createQueryBuilder('u')
-                            ->where('u.role LIKE :role')
-                            ->setParameter('role','ROLE_PRODUCCION');
+                            ->where('u.roles LIKE :role')
+                            ->setParameter('role','%ROLE_PRODUCCION%');
                     },
                     'choice_label' => 'nombre',
                     'attr'=>array('class'=>'form-control selectpicker'),
                     'data' => 'Seleccionar'
                 ))
                 ->add('idUserCalidad', EntityType::class, array(
+                    'label' => 'QF Calidad',
                     'class' => User::class,
-                    'query_builder' => function (EntityRepository $er) {
+                    'query_builder' => function ($er) {
                         return $er->createQueryBuilder('u')
-                            ->where('u.role LIKE :role')
-                            ->setParameter('role','ROLE_CALIDAD');
+                            ->where('u.roles LIKE :role')
+                            ->setParameter('role','%ROLE_CALIDAD%');
                     },
                     'choice_label' => 'nombre',
                     'attr'=>array('class'=>'form-control selectpicker'),
                     'data' => 'Seleccionar'
-                ))            
+                ))
+                ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))            
                 ->getForm();
         $form->handleRequest($request);
 

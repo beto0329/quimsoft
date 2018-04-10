@@ -21,17 +21,10 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nombres", type="string", length=150, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=150, nullable=true)
      */
-    private $nombres;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="apellidos", type="string", length=150, nullable=true)
-     */
-    private $apellidos;
-    
+    private $nombre;
+          
     /**
      * @var string
      *
@@ -46,53 +39,29 @@ class User extends BaseUser
     }
     
     /**
-     * Set nombres
+     * Set nombre
      *
-     * @param string $nombres
+     * @param string $nombre
      *
      * @return User
      */
-    public function setNombres($nombres)
+    public function setNombre($nombre)
     {
-        $this->nombres = $nombres;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get nombres
+     * Get nombre
      *
      * @return string
      */
-    public function getNombres()
+    public function getNombre()
     {
-        return $this->nombres;
+        return $this->nombre;
     }
-    
-    /**
-     * Set apellidos
-     *
-     * @param string $apellidos
-     *
-     * @return Guiaestabilidad
-     */
-    public function setApellidos($apellidos)
-    {
-        $this->apellidos = $apellidos;
-
-        return $this;
-    }
-
-    /**
-     * Get apellidos
-     *
-     * @return string
-     */
-    public function getApellidos()
-    {
-        return $this->apellidos;
-    }
-    
+           
     /**
      * Set documento
      *
