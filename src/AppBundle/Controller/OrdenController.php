@@ -55,11 +55,10 @@ class OrdenController extends Controller
                     'attr'=>array(
                     'class' => 'form-control datepicker',
                 )))
-                ->add('horaProduccion', TimeType::class, array(
+                ->add('horaProduccion', TextType::class, array(
                     'label'=>'Hora de Producción',
-                    'widget' => 'single_text',
                     'attr'=>array(
-                    'class' => 'form-control datepicker',
+                    'class' => 'form-control timepicker',
                 )))
                 ->add('lineaProduccion', TextType::class,array('label'=>'Línea de Producción','attr'=>array('class'=>'form-control')))
                 ->add('idUserInterpreta', EntityType::class, array(
