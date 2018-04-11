@@ -29,9 +29,9 @@ class Orden
     private $fechaProduccion;
 
     /**
-     * @var \DateTime
+     * @var \string
      *
-     * @ORM\Column(name="hora_produccion", type="time", nullable=false)
+     * @ORM\Column(name="hora_produccion", type="string", length=10, nullable=false)
      */
     private $horaProduccion;
 
