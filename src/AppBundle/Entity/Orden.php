@@ -73,6 +73,13 @@ class Orden
     private $idUserCalidad;
     
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="estado", type="boolean", nullable=false)
+     */
+    private $estado;
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="current", type="date", nullable=false)
@@ -82,6 +89,7 @@ class Orden
     public function __construct()
     {
         $this->current = new \DateTime();
+        $this->estado = false;
     }    
 
     /**
@@ -260,6 +268,30 @@ class Orden
     public function getCurrent()
     {
         return $this->current;
-    }    
+    }
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     *
+     * @return Orden
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
     
 }
