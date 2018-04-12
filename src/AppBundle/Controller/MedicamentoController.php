@@ -62,7 +62,11 @@ class MedicamentoController extends Controller
                 ->add('idlaboratorio', EntityType::class, array(
                     'class' => Laboratorio::class,
                     'choice_label' => 'nombre',
-                    'attr'=>array('class'=>'form-control selectpicker'),
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',                        
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar'
+                    ),
                     'data' => 'Seleccionar'
                 ))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))

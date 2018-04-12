@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Orden;
 
 class DefaultController extends Controller
 {
@@ -16,6 +17,17 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+    
+    /**
+     * @Route("/mezcla/{id}", name="mezcla_new")
+     */
+    public function mezclaAction(Orden $orden)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/mezcla.html.twig', [
+            'orden' => $orden,
         ]);
     }
 }

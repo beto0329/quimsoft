@@ -49,8 +49,11 @@ class GuiaestabilidadController extends Controller
                ->add('idmedicamento', EntityType::class, array(
                     'class' => Medicamento::class,
                     'choice_label' => 'medicamentoLaboratorio',
-                    'attr'=>array('class'=>'form-control selectpicker')
-                ))
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar'
+                )))
                 ->add('nombrelasa', TextType::class,array('label'=>'Nombre Lasa','attr'=>array('class'=>'form-control')))
                 ->add('presentacionfavorita', TextType::class,array('label'=>'Presentacion Favorita','attr'=>array('class'=>'form-control')))
                 ->add('unidadmediad', TextType::class,array('label'=>'Unidad Mediad','attr'=>array('class'=>'form-control')))
@@ -66,8 +69,10 @@ class GuiaestabilidadController extends Controller
                         'Si' => 'true',
                         'No'=> 'flase'
                     ),
-                    'attr'=>array('class'=>'form-control selectpicker')
-                ))
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',
+                        'title'=>'Seleccionar'
+                )))
                 ->add('estabilidadmezcladias', TextType::class,array('label'=>'Estabilidad Mezcla en Días','attr'=>array('class'=>'form-control')))
                 ->add('estabilidadmezclahoras', TextType::class,array('label'=>'Estabilidad Mezcla en Horas','attr'=>array('class'=>'form-control')))
                 ->add('estabilidadsobrantedias', TextType::class,array('label'=>'Estabilidad Sobrante en Días','attr'=>array('class'=>'form-control')))
@@ -81,7 +86,11 @@ class GuiaestabilidadController extends Controller
                 ->add('idlaboratorio', EntityType::class, array(
                     'class' => Laboratorio::class,
                     'choice_label' => 'nombre',
-                    'attr'=>array('class'=>'form-control selectpicker')
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar'
+                        )
                 ))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-success')))
                 ->getForm();

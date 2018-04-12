@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
@@ -53,14 +54,29 @@ class OrdenController extends Controller
                     'widget' => 'single_text',
                     'format' => 'yyyy-mm-dd',
                     'attr'=>array(
-                    'class' => 'form-control datepicker',
+                        'data-live-search'=>true,
+                        'class' => 'form-control datepicker',
                 )))
                 ->add('horaProduccion', TextType::class, array(
                     'label'=>'Hora de Producción',
                     'attr'=>array(
-                    'class' => 'form-control timepicker',
+                        'data-live-search'=>true,
+                        'class' => 'form-control timepicker',
                 )))
-                ->add('lineaProduccion', TextType::class,array('label'=>'Línea de Producción','attr'=>array('class'=>'form-control')))
+                ->add('lineaProduccion', ChoiceType::class,array(
+                    'label'=>'Línea de Producción',
+                    'expanded'=>false,
+                    'multiple'=>false,
+                    'choices'=>array(
+                        'Estéril'=>'Estéril',
+                        'Oncológico'=>'Oncológico'                        
+                    ),
+                    'attr'=>array(
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar',
+                        'class'=>'form-control selectpicker'
+                        )
+                    ))
                 ->add('idUserInterpreta', EntityType::class, array(
                     'label' => 'QF Interpretación',
                     'class' => User::class,
@@ -71,9 +87,11 @@ class OrdenController extends Controller
                             ->orderBy('u.username', 'ASC');
                     },
                     'choice_label' => 'nombre',
-                    'attr'=>array('class'=>'form-control selectpicker'),
-                    'data' => 'Seleccionar'
-                ))
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar'
+                )))
                 ->add('idUserProduccion', EntityType::class, array(
                     'label' => 'QF Producción',
                     'class' => User::class,
@@ -83,9 +101,11 @@ class OrdenController extends Controller
                             ->setParameter('role','%ROLE_PRODUCCION%');
                     },
                     'choice_label' => 'nombre',
-                    'attr'=>array('class'=>'form-control selectpicker'),
-                    'data' => 'Seleccionar'
-                ))
+                    'attr'=>array(
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar',
+                        'class'=>'form-control selectpicker'
+                )))
                 ->add('idUserCalidad', EntityType::class, array(
                     'label' => 'QF Calidad',
                     'class' => User::class,
@@ -95,9 +115,11 @@ class OrdenController extends Controller
                             ->setParameter('role','%ROLE_CALIDAD%');
                     },
                     'choice_label' => 'nombre',
-                    'attr'=>array('class'=>'form-control selectpicker'),
-                    'data' => 'Seleccionar'
-                ))
+                    'attr'=>array(
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar',
+                        'class'=>'form-control selectpicker'
+                )))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))            
                 ->getForm();
         $form->handleRequest($request);
@@ -107,7 +129,7 @@ class OrdenController extends Controller
             $em->persist($orden);
             $em->flush();
 
-            return $this->redirectToRoute('orden_show', array('id' => $orden->getId()));
+            return $this->redirectToRoute('mezcla_new', array('id' => $orden->getId()));
         }
 
         return $this->render('orden/new.html.twig', array(

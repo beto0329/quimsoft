@@ -18,7 +18,7 @@
                     {% for orden in ordens %}
                         <tr>
                             <td><a href="{{ path('orden_show', { 'id': orden.id }) }}">{{ orden.id }}</a></td>
-                            <td>{{ orden.fechaProduccion }}</td>
+                            <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ orden.horaProduccion }}</td>
                             <td>{{ orden.lineaProduccion }}</td>
                             <td>
