@@ -57,7 +57,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #999;
+    color: #777;
 }
 
 .top-nav>li>a:hover,
@@ -122,7 +122,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #f8f8f8;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -135,7 +135,7 @@ ul.alert-dropdown {
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
-        background-color: #000 !important;
+        background-color: #e0e0e0 !important;
     }
 }
 
@@ -151,7 +151,7 @@ ul.alert-dropdown {
 }
 
 .side-nav>li>ul>li>a:hover {
-    color: #fff;
+    color: #777;
 }
 
 /* Flot Chart Containers */
