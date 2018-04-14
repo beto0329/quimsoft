@@ -11,6 +11,7 @@
                             <th>Fechaproduccion</th>
                             <th>Horaproduccion</th>
                             <th>Lineaproduccion</th>
+                            <th>Estado</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -21,6 +22,7 @@
                             <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ orden.horaProduccion }}</td>
                             <td>{{ orden.lineaProduccion }}</td>
+                            <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="#" class="btn btn-danger" >En Proceso</a>{% endif %}</td>
                             <td>
                                 <a href="{{ path('orden_show', { 'id': orden.id }) }}" class="btn btn-info">Ver Orden</a>
                             </td>

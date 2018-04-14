@@ -20,14 +20,5 @@ class DefaultController extends Controller
         ]);
     }
     
-    /**
-     * @Route("/mezcla/{id}", name="mezcla_new")
-     */
-    public function mezclaAction(Orden $orden)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/mezcla.html.twig', [
-            'orden' => $orden,
-        ]);
-    }
+    
 }

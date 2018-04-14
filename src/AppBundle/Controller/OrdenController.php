@@ -128,8 +128,24 @@ class OrdenController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($orden);
             $em->flush();
+            
+            $numOrden=$orden->getId();
+            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, o.lineaProduccion, u1.nombre as qfinterpreta, u2.nombre as qfproduccion, u3.nombre as qfcalidad "
+                    . "FROM AppBundle\Entity\Orden o "
+                    . "JOIN o.idUserInterpreta u1 "
+                    . "JOIN o.idUserProduccion u2 "
+                    . "JOIN o.idUserCalidad u3 "
+                    . "WHERE o.id=:orden ")
+                    ->setParameter('orden',$numOrden);
+            $ordenMezcla = $queryOrden->getResult();
+            $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
+            $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
 
-            return $this->redirectToRoute('mezcla_new', array('id' => $orden->getId()));
+            return $this->render('default/mezcla.html.twig', array(
+                'orden' => $ordenMezcla,
+                'medicamentos' => $medicamentos,
+                'pacientes'    => $pacientes
+                ));
         }
 
         return $this->render('orden/new.html.twig', array(

@@ -24,6 +24,13 @@ class Paciente
     /**
      * @var string
      *
+     * @ORM\Column(name="documento", type="string", length=20, nullable=false)
+     */
+    private $documento;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombre_completo", type="string", length=250, nullable=false)
      */
     private $nombreCompleto;
@@ -64,6 +71,30 @@ class Paciente
         return $this->id;
     }
 
+    /**
+     * Set documento
+     *
+     * @param string $documento
+     *
+     * @return Medicamento
+     */
+    public function setDocumento($documento)
+    {
+        $this->documento = $documento;
+
+        return $this;
+    }
+
+    /**
+     * Get documento
+     *
+     * @return string
+     */
+    public function getDocumento()
+    {
+        return $this->documento;
+    }
+    
     /**
      * Set nombreCompleto
      *
