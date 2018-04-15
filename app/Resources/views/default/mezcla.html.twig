@@ -26,58 +26,116 @@
             <h4><span class="glyphicon glyphicon-filter" aria-hidden="true"></span>Crear Mezclas <a href="#" id="addMezcla" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar Mezcla</a></h4>
         </div>
         <div class="panel-body" >
-            <div id="mezclas" >
-            <div class="col-md-3 form-group">
-                <label for="paciente" >Paciente</label>
-                <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                    {% for paciente in pacientes %}
-                        <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
-                    {% endfor %}    
-                </select>
-            </div>
-            <div class="col-md-2 form-group">
-                <label for="Medicamento1" >Medicamento 1</label>
-                <select name="medicamento1Select1" id="medicamento1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                    {% for medica in medicamentos %}
-                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                    {% endfor %}   
-                </select>
-            </div>
-            <div class="col-md-1 form-group">
-                <label for="dosis1" >Dosis 1</label>
-                <input type="text" name="dosis1Select1" class="form-control" />
-            </div>
-            <div class="col-md-2 form-group">
-                <label for="Medicamento2" >Medicamento 2</label>
-                <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                    {% for medica in medicamentos %}
-                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                    {% endfor %}   
-                </select>
-            </div>
-            <div class="col-md-1 form-group">
-                <label for="dosis2" >Dosis 2</label>
-                <input type="text" name="dosis2Select1" class="form-control" />
-            </div>
-            <div class="col-md-2 form-group">
-                <label for="Medicamento3" >Medicamento 3</label>
-                <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                    {% for medica in medicamentos %}
-                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                    {% endfor %}   
-                </select>
-            </div>
-            <div class="col-md-1 form-group">
-                <label for="dosis3" >Dosis 3</label>
-                <input type="text" name="dosis3Select1" class="form-control" />
-            </div>
-            </div>    
+            <form name="newMezcla" id="newMezcla" >           
+                <div id="mezclas" >
+                {% if diagnostico %}
+                    <div class="col-md-4 form-group">
+                        <label for="paciente" >Paciente</label>
+                        <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for paciente in pacientes %}
+                                <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
+                            {% endfor %}    
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="diagnostico" >Diagnostico</label>
+                        <input type="text" name="diagnosticoSelect1" class="form-control" />
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="eps" >EPS</label>
+                        <input type="text" name="epsSelect1" class="form-control" />
+                    </div>    
+                    <div class="col-md-3 form-group">
+                        <label for="Medicamento1" >Medicamento 1</label>
+                        <select name="medicamento1Select1" id="medicamento1Select" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis1" >Dosis 1</label>
+                        <input type="text" name="dosis1Select1" class="form-control" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="Medicamento2" >Medicamento 2</label>
+                        <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis2" >Dosis 2</label>
+                        <input type="text" name="dosis2Select1" class="form-control" />
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="Medicamento3" >Medicamento 3</label>
+                        <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis3" >Dosis 3</label>
+                        <input type="text" name="dosis3Select1" class="form-control" />
+                    </div>
+                {% else %} 
+                    <div class="col-md-3 form-group">
+                        <label for="paciente" >Paciente</label>
+                        <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for paciente in pacientes %}
+                                <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
+                            {% endfor %}    
+                        </select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label for="Medicamento1" >Medicamento 1</label>
+                        <select name="medicamento1Select1" id="medicamentoSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis1" >Dosis 1</label>
+                        <input type="text" name="dosis1Select1" class="form-control" />
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label for="Medicamento2" >Medicamento 2</label>
+                        <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis2" >Dosis 2</label>
+                        <input type="text" name="dosis2Select1" class="form-control" />
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label for="Medicamento3" >Medicamento 3</label>
+                        <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                            {% for medica in medicamentos %}
+                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                            {% endfor %}   
+                        </select>
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <label for="dosis3" >Dosis 3</label>
+                        <input type="text" name="dosis3Select1" class="form-control" />
+                    </div>
+                {% endif %}
+                </div>
             <div class="form-group col-md-6 text-center">
                 <a href="#" class="btn btn-success col-md-5">Procesar Orden</a>
             </div> 
             <div class="form-group col-md-6 text-center">
                 <a href="{{ path('orden_index') }}" class="btn btn-danger col-md-5">Cancelar</a>
             </div>
+            <input type="hidden" id="orden" value="{{ orden.0.id }}" />
+        </form>    
         </div>
         <input type="hidden" id="contador" value="1" />
     </div>                    
@@ -89,26 +147,48 @@
     <script>
         $(document).ready(function(){
             $('#addMezcla').click(function(){
-                
                 var contador = parseInt($('#contador').val())+1;
                 $('#contador').val(contador);
-                var selectMedica1 = '<div class="col-md-2 form-group"><label for="Medicamento1Select'+contador+'" >Medicamento 1</label><select name="medicamento1Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
-                var selectMedica2 = '<div class="col-md-2 form-group"><label for="Medicamento2Select'+contador+'" >Medicamento 2</label><select name="medicamento2Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
-                var selectMedica3 = '<div class="col-md-2 form-group"><label for="Medicamento3Select'+contador+'" >Medicamento 3</label><select name="medicamento3Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
-                var selectPaciente = '<div class="col-md-3 form-group"><label for="pacienteSelect'+contador+'" >Paciente</label><select name="pacienteSelect'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
-                var optionsMedica = '';
-                $('#medicamento1Select1 option').each(function(){
-                    optionsMedica = optionsMedica+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
-                });
-                $('#paciente1Select1 option').each(function(){
-                    selectPaciente = selectPaciente+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
-                });
-                selectPaciente = selectPaciente+'</select></div>';
-                selectMedica1 = selectMedica1+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis1Select'+contador+'" >Dosis 1</label><input type="text" name="dosis1Select'+contador+'" class="form-control" /></div>';
-                selectMedica2 = selectMedica2+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis2Select'+contador+'" >Dosis 2</label><input type="text" name="dosis2Select'+contador+'" class="form-control" /></div>';
-                selectMedica3 = selectMedica3+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis3Select'+contador+'" >Dosis 3</label><input type="text" name="dosis3Select'+contador+'" class="form-control" /></div>';
-                $('#mezclas').append(selectPaciente+selectMedica1+selectMedica2+selectMedica3); 
-                $('.selectpicker').selectpicker();
+                {% if diagnostico %}
+                    var selectMedica1 = '<div class="col-md-3 form-group"><label for="Medicamento1Select'+contador+'" >Medicamento 1</label><select name="medicamento1Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectMedica2 = '<div class="col-md-3 form-group"><label for="Medicamento2Select'+contador+'" >Medicamento 2</label><select name="medicamento2Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectMedica3 = '<div class="col-md-3 form-group"><label for="Medicamento3Select'+contador+'" >Medicamento 3</label><select name="medicamento3Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectPaciente = '<div class="col-md-4 form-group"><label for="pacienteSelect'+contador+'" >Paciente</label><select name="pacienteSelect'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectDiagnostico = '<div class="col-md-4 form-group"><label for="diagnosticoSelect'+contador+'" >Diagnostico</label><input type="text" name="diagnosticoSelect'+contador+'" class="form-control" /></div>';
+                    var selectEps = '<div class="col-md-4 form-group"><label for="epsSelect'+contador+'" >EPS</label><input type="text" name="epsSelect'+contador+'" class="form-control" /></div>';
+                    var optionsMedica = '';
+                    $('#medicamento1Select1 option').each(function(){
+                        optionsMedica = optionsMedica+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
+                    });
+                    $('#paciente1Select1 option').each(function(){
+                        selectPaciente = selectPaciente+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
+                    });
+                    selectPaciente = selectPaciente+'</select></div>';
+                    selectMedica1 = selectMedica1+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis1Select'+contador+'" >Dosis 1</label><input type="text" name="dosis1Select'+contador+'" class="form-control" /></div>';
+                    selectMedica2 = selectMedica2+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis2Select'+contador+'" >Dosis 2</label><input type="text" name="dosis2Select'+contador+'" class="form-control" /></div>';
+                    selectMedica3 = selectMedica3+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis3Select'+contador+'" >Dosis 3</label><input type="text" name="dosis3Select'+contador+'" class="form-control" /></div>';
+                    $('#mezclas').append(selectPaciente+selectDiagnostico+selectEps+selectMedica1+selectMedica2+selectMedica3);
+                    $('.selectpicker').selectpicker();
+                {% else %}    
+                    var selectMedica1 = '<div class="col-md-2 form-group"><label for="Medicamento1Select'+contador+'" >Medicamento 1</label><select name="medicamento1Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectMedica2 = '<div class="col-md-2 form-group"><label for="Medicamento2Select'+contador+'" >Medicamento 2</label><select name="medicamento2Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectMedica3 = '<div class="col-md-2 form-group"><label for="Medicamento3Select'+contador+'" >Medicamento 3</label><select name="medicamento3Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var selectPaciente = '<div class="col-md-3 form-group"><label for="pacienteSelect'+contador+'" >Paciente</label><select name="pacienteSelect'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var optionsMedica = '';
+                    $('#medicamento1Select1 option').each(function(){
+                        optionsMedica = optionsMedica+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
+                    });
+                    $('#paciente1Select1 option').each(function(){
+                        selectPaciente = selectPaciente+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
+                    });
+                    selectPaciente = selectPaciente+'</select></div>';
+                    selectMedica1 = selectMedica1+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis1Select'+contador+'" >Dosis 1</label><input type="text" name="dosis1Select'+contador+'" class="form-control" /></div>';
+                    selectMedica2 = selectMedica2+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis2Select'+contador+'" >Dosis 2</label><input type="text" name="dosis2Select'+contador+'" class="form-control" /></div>';
+                    selectMedica3 = selectMedica3+optionsMedica+'</select></div><div class="col-md-1 form-group"><label for="dosis3Select'+contador+'" >Dosis 3</label><input type="text" name="dosis3Select'+contador+'" class="form-control" /></div>';
+                    $('#mezclas').append(selectPaciente+selectMedica1+selectMedica2+selectMedica3); 
+                    $('.selectpicker').selectpicker();
+                {% endif %}
+                
                 
             });
         });

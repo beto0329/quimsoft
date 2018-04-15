@@ -140,9 +140,13 @@ class OrdenController extends Controller
             $ordenMezcla = $queryOrden->getResult();
             $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
             $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
+            $diagnostico = $this->container->getParameter('diagnostico');
+            $eps = $this->container->getParameter('eps');
 
             return $this->render('default/mezcla.html.twig', array(
                 'orden' => $ordenMezcla,
+                'diagnostico'  => $diagnostico,
+                'eps'  => $eps,
                 'medicamentos' => $medicamentos,
                 'pacientes'    => $pacientes
                 ));
