@@ -47,7 +47,7 @@ class Orden
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUserInterpreta", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idUserInterpreta", referencedColumnName="id", nullable=true)
      * })
      */
     private $idUserInterpreta;
@@ -57,7 +57,7 @@ class Orden
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUserProduccion", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idUserProduccion", referencedColumnName="id", nullable=true)
      * })
      */
     private $idUserProduccion;
@@ -67,7 +67,7 @@ class Orden
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUserCalidad", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idUserCalidad", referencedColumnName="id", nullable=true)
      * })
      */
     private $idUserCalidad;

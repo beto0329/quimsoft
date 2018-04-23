@@ -47,6 +47,10 @@ class OrdenController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em =  $this->getDoctrine()->getManager();
+        
+        $usuario = $em->getRepository('AppBundle:User')->findOneById($user);
         $orden = new Orden();
         $form = $this->createFormBuilder($orden)
                  ->add('fechaProduccion', DateType::class,array(
@@ -78,48 +82,9 @@ class OrdenController extends Controller
                         )
                     ))
                 ->add('idUserInterpreta', EntityType::class, array(
-                    'label' => 'QF Interpretación',
-                    'class' => User::class,
-                    'query_builder' => function ($er) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.roles LIKE :role')
-                            ->setParameter('role','%ROLE_REGENTE%')
-                            ->orderBy('u.username', 'ASC');
-                    },
-                    'choice_label' => 'nombre',
-                    'attr'=>array(
-                        'class'=>'form-control selectpicker',
-                        'data-live-search'=>true,
-                        'title'=>'Seleccionar'
-                )))
-                ->add('idUserProduccion', EntityType::class, array(
-                    'label' => 'QF Producción',
-                    'class' => User::class,
-                    'query_builder' => function ($er) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.roles LIKE :role')
-                            ->setParameter('role','%ROLE_PRODUCCION%');
-                    },
-                    'choice_label' => 'nombre',
-                    'attr'=>array(
-                        'data-live-search'=>true,
-                        'title'=>'Seleccionar',
-                        'class'=>'form-control selectpicker'
-                )))
-                ->add('idUserCalidad', EntityType::class, array(
-                    'label' => 'QF Calidad',
-                    'class' => User::class,
-                    'query_builder' => function ($er) {
-                        return $er->createQueryBuilder('u')
-                            ->where('u.roles LIKE :role')
-                            ->setParameter('role','%ROLE_CALIDAD%');
-                    },
-                    'choice_label' => 'nombre',
-                    'attr'=>array(
-                        'data-live-search'=>true,
-                        'title'=>'Seleccionar',
-                        'class'=>'form-control selectpicker'
-                )))
+                    'class' => User::class,                    
+                    'data' => $usuario,
+                    'choice_label' => 'nombre'))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))            
                 ->getForm();
         $form->handleRequest($request);
@@ -130,11 +95,9 @@ class OrdenController extends Controller
             $em->flush();
             
             $numOrden=$orden->getId();
-            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, o.lineaProduccion, u1.nombre as qfinterpreta, u2.nombre as qfproduccion, u3.nombre as qfcalidad "
+            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, o.lineaProduccion, u1.nombre as qfinterpreta "
                     . "FROM AppBundle\Entity\Orden o "
                     . "JOIN o.idUserInterpreta u1 "
-                    . "JOIN o.idUserProduccion u2 "
-                    . "JOIN o.idUserCalidad u3 "
                     . "WHERE o.id=:orden ")
                     ->setParameter('orden',$numOrden);
             $ordenMezcla = $queryOrden->getResult();
