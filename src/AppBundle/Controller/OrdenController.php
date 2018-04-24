@@ -32,7 +32,8 @@ class OrdenController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ordens = $em->getRepository('AppBundle:Orden')->findAll();
+        $queryOrden = $em->createQuery("SELECT od.id, od.fechaProduccion, od.horaProduccion, od.estado, lp.lineaProduccion FROM AppBundle\Entity\Orden od JOIN od.idLineaProduccion lp ");
+        $ordens = $queryOrden->getResult();
 
         return $this->render('orden/index.html.twig', array(
             'ordens' => $ordens,
@@ -67,20 +68,14 @@ class OrdenController extends Controller
                         'data-live-search'=>true,
                         'class' => 'form-control timepicker',
                 )))
-                ->add('lineaProduccion', ChoiceType::class,array(
-                    'label'=>'Línea de Producción',
-                    'expanded'=>false,
-                    'multiple'=>false,
-                    'choices'=>array(
-                        'Estéril'=>'Estéril',
-                        'Oncológico'=>'Oncológico'                        
-                    ),
+                ->add('idlineaProduccion', EntityType::class, array(
+                    'class' => LineaProduccion::class,
+                    'choice_label' => 'lineaProduccion',
                     'attr'=>array(
+                        'class'=>'form-control selectpicker',                        
                         'data-live-search'=>true,
-                        'title'=>'Seleccionar',
-                        'class'=>'form-control selectpicker'
-                        )
-                    ))
+                        'title'=>'Seleccionar'
+                    )))
                 ->add('idUserInterpreta', EntityType::class, array(
                     'class' => User::class,                    
                     'data' => $usuario,

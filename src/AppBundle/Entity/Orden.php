@@ -36,11 +36,14 @@ class Orden
     private $horaProduccion;
 
     /**
-     * @var \string
+     * @var \LineaProduccion
      *
-     * @ORM\Column(name="linea_produccion", type="string", length=100, nullable=false)
+     * @ORM\ManyToOne(targetEntity="LineaProduccion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idLineaProduccion", referencedColumnName="id", nullable=true)
+     * })
      */
-    private $lineaProduccion;
+    private $idLineaProduccion;
 
     /**
      * @var \User
@@ -151,15 +154,15 @@ class Orden
     }
 
     /**
-     * Set lineaProduccion
+     * Set idLineaProduccion
      *
-     * @param string $lineaProduccion
+     * @param \AppBundle\Entity\LineaProduccion $idLineaProduccion
      *
-     * @return Orden
+     * @return LineaProduccion
      */
-    public function setLineaProduccion($lineaProduccion)
+    public function setLineaProduccion(\AppBundle\Entity\User $idLineaProduccion = null )
     {
-        $this->lineaProduccion = $lineaProduccion;
+        $this->idLineaProduccion = $idLineaProduccion;
 
         return $this;
     }
@@ -169,9 +172,9 @@ class Orden
      *
      * @return string
      */
-    public function getLineaProduccion()
+    public function getIdLineaProduccion()
     {
-        return $this->lineaProduccion;
+        return $this->idLineaProduccion;
     }
     
     /**
