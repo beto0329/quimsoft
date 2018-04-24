@@ -33,7 +33,7 @@
                         <label for="paciente" >Paciente</label>
                         <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
                             {% for paciente in pacientes %}
-                                <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
+                                <option value="{{ paciente.documento }}" >{{ paciente.documento }} - {{ paciente.nombreCompleto }}</option>
                             {% endfor %}    
                         </select>
                     </div>
