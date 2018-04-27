@@ -187,6 +187,16 @@ class Guiaestabilidad
      * })
      */
     private $idmedicamento;
+    
+    /**
+     * @var \LineaProduccion
+     *
+     * @ORM\ManyToOne(targetEntity="LineaProduccion")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idLineaProduccion", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $idLineaProduccion;
 
 
 
@@ -750,5 +760,29 @@ class Guiaestabilidad
     public function getIdmedicamento()
     {
         return $this->idmedicamento;
+    }
+    
+    /**
+     * Set idLineaProduccion
+     *
+     * @param \AppBundle\Entity\LineaProduccion $idLineaProduccion
+     *
+     * @return LineaProduccion
+     */
+    public function setLineaProduccion(\AppBundle\Entity\User $idLineaProduccion = null )
+    {
+        $this->idLineaProduccion = $idLineaProduccion;
+
+        return $this;
+    }
+
+    /**
+     * Get lineaProduccion
+     *
+     * @return string
+     */
+    public function getIdLineaProduccion()
+    {
+        return $this->idLineaProduccion;
     }
 }
