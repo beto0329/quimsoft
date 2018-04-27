@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Orden de Producción <a href="{{ path('orden_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Orden</a></h2></div>
+            <div class="panel-body">
+                <table id='medTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fechaproduccion</th>
+                            <th>Horaproduccion</th>
+                            <th>Lineaproduccion</th>
+                            <th>Estado</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for orden in ordens %}
+                        <tr>
+                            <td><a href="{{ path('orden_show', { 'id': orden.id }) }}">{{ orden.id }}</a></td>
+                            <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
+                            <td>{{ orden.horaProduccion }}</td>
+                            <td>{{ orden.lineaProduccion }}</td>
+                            <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="#" class="btn btn-danger" >En Proceso</a>{% endif %}</td>
+                            <td>
+                                <a href="{{ path('orden_show', { 'id': orden.id }) }}" class="btn btn-info">Ver Orden</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+{% endblock %}

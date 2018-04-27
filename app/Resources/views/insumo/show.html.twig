@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Insumo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ insumo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombreinsumo</th>
+                <td>{{ insumo.nombreInsumo }}</td>
+            </tr>
+            <tr>
+                <th>Lote</th>
+                <td>{{ insumo.lote }}</td>
+            </tr>
+            <tr>
+                <th>Fechavencimiento</th>
+                <td>{% if insumo.fechaVencimiento %}{{ insumo.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td>{% if insumo.current %}{{ insumo.current|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('insumo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('insumo_edit', { 'id': insumo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

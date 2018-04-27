@@ -1,0 +1,61 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Medicamento
+ *
+ * @ORM\Table(name="medicamento")
+ * @ORM\Entity
+ */
+class Medicamento
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_medicamento", type="string", length=150, nullable=false)
+     */
+    private $nombreMedicamento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="presentacion_existencia", type="string", length=150, nullable=false)
+     */
+    private $presentacionExistencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lote", type="string", length=50, nullable=false)
+     */
+    private $lote;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_vencimiento", type="date", nullable=false)
+     */
+    private $fechaVencimiento;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="current", type="datetime", nullable=false)
+     */
+    private $current = 'CURRENT_TIMESTAMP';
+
+
+}
+

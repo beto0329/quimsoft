@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Medicamentos <a href="{{ path('medicamento_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Medicamento</a></h2></div>
+            <div class="panel-body">
+                <table id='medTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre Medicamento</th>
+                            <th>Nombre Laboratorio</th>
+                            <th>Medicamento+Laboratorio</th>
+                            <th>Presentacionexistencia</th>
+                            <th>Lote</th>
+                            <th>Fechavencimiento</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for medicamento in medicamentos %}
+                        <tr>
+                            <td><a href="{{ path('medicamento_show', { 'id': medicamento.id }) }}">{{ medicamento.id }}</a></td>
+                            <td>{{ medicamento.nombreMedicamento }}</td>
+                            <td>{{ medicamento.nombre }}</td>
+                            <td>{{ medicamento.medicamentoLaboratorio }}</td>
+                            <td>{{ medicamento.presentacionExistencia }}</td>
+                            <td>{{ medicamento.lote }}</td>
+                            <td>{% if medicamento.fechaVencimiento %}{{ medicamento.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+                            <td>
+                                <a href="{{ path('medicamento_edit', { 'id': medicamento.id }) }}" class="btn btn-info">editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>      
+
+{% endblock %}

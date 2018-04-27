@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Guia de Estabilidad <a href="{{ path('guiaestabilidad_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Guia Estabilidad</a></h2></div>
+            <div class="panel-body">
+                <table id='labTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre Medicamento</th>
+                            <th>Nombre LASA</th>
+                            <th>Presentacion Favorita</th>
+                            <th>Unidad Mediad</th>
+                            <th>Envase</th>
+                            <th>Condiciones Almacenamiento</th>
+                            <th>Fotosensible</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for guiaestabilidad in guiaestabilidads %}
+                        <tr>
+                            <td><a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">{{ guiaestabilidad.id }}</a></td>
+                            <td>{{ guiaestabilidad.medicamentoLaboratorio }}</td>
+                            <td>{{ guiaestabilidad.nombrelasa }}</td>
+                            <td>{{ guiaestabilidad.presentacionfavorita }}</td>
+                            <td>{{ guiaestabilidad.unidadmediad }}</td>
+                            <td>{{ guiaestabilidad.envase }}</td>
+                            <td>{{ guiaestabilidad.condicionesalmacenamiento }}</td>
+                            <td>{% if guiaestabilidad.fotosensible %}Yes{% else %}No{% endif %}</td>
+                            <td>
+                                <a href="{{ path('guiaestabilidad_edit', { 'id': guiaestabilidad.id }) }}" class="btn btn-info" >editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

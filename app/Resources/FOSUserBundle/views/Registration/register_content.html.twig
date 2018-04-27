@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Registrar Usuario</h1>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_widget(form) }}
+        <div class="form-group col-md-6">
+            {{ form_widget(form.documento) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_widget(form.nombre) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_widget(form.username) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_widget(form.plainPassword) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_widget(form.roles) }}
+        </div>
+        <input type="submit" value="Registrar" class="btn btn-success" />
+{{ form_end(form) }}

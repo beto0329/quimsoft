@@ -1,0 +1,190 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Guiaestabilidad
+ *
+ * @ORM\Table(name="guiaestabilidad", indexes={@ORM\Index(name="IDX_879BEF3ADD6092AE", columns={"idLaboratorio"})})
+ * @ORM\Entity
+ */
+class Guiaestabilidad
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombreMedicamento", type="string", length=150, nullable=false)
+     */
+    private $nombremedicamento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombreLasa", type="string", length=150, nullable=false)
+     */
+    private $nombrelasa;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="presentacionFavorita", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $presentacionfavorita;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="unidadMediad", type="string", length=20, nullable=false)
+     */
+    private $unidadmediad;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="volReconstitucion", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $volreconstitucion;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="concentracion", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $concentracion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="envase", type="string", length=100, nullable=false)
+     */
+    private $envase;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vehiculoDilucion", type="string", length=100, nullable=false)
+     */
+    private $vehiculodilucion;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="volVehiculoDilucion", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $volvehiculodilucion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="viaAdmon", type="string", length=50, nullable=false)
+     */
+    private $viaadmon;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condicionesAlmacenamiento", type="string", length=150, nullable=false)
+     */
+    private $condicionesalmacenamiento;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="fotosensible", type="boolean", nullable=false)
+     */
+    private $fotosensible;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="estabilidadMezclaDias", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $estabilidadmezcladias;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="estabilidadMezclaHoras", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $estabilidadmezclahoras;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="estabilidadSobranteDias", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $estabilidadsobrantedias;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="estabilidadSobranteHoras", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $estabilidadsobrantehoras;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condiAlmacenSobrante", type="string", length=150, nullable=false)
+     */
+    private $condialmacensobrante;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="grupoTerapeutico", type="string", length=150, nullable=false)
+     */
+    private $grupoterapeutico;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ordenCampana", type="string", length=10, nullable=false)
+     */
+    private $ordencampana;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="referencia", type="string", length=150, nullable=false)
+     */
+    private $referencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tiempoInfusion", type="string", length=150, nullable=false)
+     */
+    private $tiempoinfusion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo", type="string", length=150, nullable=false)
+     */
+    private $tipo;
+
+    /**
+     * @var \Laboratorio
+     *
+     * @ORM\ManyToOne(targetEntity="Laboratorio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idLaboratorio", referencedColumnName="id")
+     * })
+     */
+    private $idlaboratorio;
+
+
+}
+

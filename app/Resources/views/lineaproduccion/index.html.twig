@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>Líneas de Producción <a href="{{ path('lineaproduccion_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-sort" aria-hidden="true"></span>Crear Línea de Producción</a></h2></div>
+            <div class="panel-body">
+                <table id='labTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Lineaproduccion</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for lineaProduccion in lineaProduccions %}
+                        <tr>
+                            <td><a href="{{ path('lineaproduccion_show', { 'id': lineaProduccion.id }) }}">{{ lineaProduccion.id }}</a></td>
+                            <td>{{ lineaProduccion.lineaProduccion }}</td>
+                            <td>
+                                <a href="{{ path('lineaproduccion_edit', { 'id': lineaProduccion.id }) }}" class="btn btn-info" >editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+{% endblock %}

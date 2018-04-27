@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> Insumos <a href="{{ path('insumo_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Insumo</a></h2></div>
+            <div class="panel-body">
+                <table id='labTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombreinsumo</th>
+                            <th>Lote</th>
+                            <th>Fechavencimiento</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for insumo in insumos %}
+                        <tr>
+                            <td><a href="{{ path('insumo_show', { 'id': insumo.id }) }}">{{ insumo.id }}</a></td>
+                            <td>{{ insumo.nombreInsumo }}</td>
+                            <td>{{ insumo.lote }}</td>
+                            <td>{% if insumo.fechaVencimiento %}{{ insumo.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
+                            <td>
+                                <a href="{{ path('insumo_edit', { 'id': insumo.id }) }}" class="btn btn-info">editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

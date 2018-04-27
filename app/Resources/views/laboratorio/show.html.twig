@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Laboratorio</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ laboratorio.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ laboratorio.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Contacto</th>
+                <td>{{ laboratorio.contacto }}</td>
+            </tr>
+            <tr>
+                <th>Telcontacto</th>
+                <td>{{ laboratorio.telcontacto }}</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td>{% if laboratorio.current %}{{ laboratorio.current|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('laboratorio_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('laboratorio_edit', { 'id': laboratorio.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

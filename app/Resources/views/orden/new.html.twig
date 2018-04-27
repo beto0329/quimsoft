@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Crear Orden</h1>
+
+    {{ form_start(form) }}
+        <div class="form-group col-md-6">
+            {{ form_label(form.fechaProduccion) }}
+            {{ form_widget(form.fechaProduccion) }}
+            {{ form_errors(form.fechaProduccion) }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form_label(form.horaProduccion) }}
+            {{ form_widget(form.horaProduccion) }}
+            {{ form_errors(form.horaProduccion) }}
+        </div>
+        <div class="form-group col-md-12">
+            {{ form_label(form.lineaProduccion) }}
+            {{ form_widget(form.lineaProduccion) }}
+            {{ form_errors(form.lineaProduccion) }}
+        </div>
+        <div class="hide">
+            {{ form_label(form.idUserInterpreta) }}
+            {{ form_widget(form.idUserInterpreta) }}
+            {{ form_errors(form.idUserInterpreta) }}
+        </div>
+        <hr>
+        <div class="form-group col-md-6">
+            {{ form_label(form.save) }}
+            {{ form_end(form) }}
+        </div>  
+        <div class="form-group col-md-6">
+            <a href="{{ path('guiaestabilidad_index') }}" class="btn btn-danger col-md-5">Cancelar</a>
+        </div>  
+{% endblock %}

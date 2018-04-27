@@ -16,3 +16,5 @@
 /vendor/
 /web/bundles/
 nbproject/private/private.xml
+web/
+licence000.txt
