@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Guiaestabilidad;
 use AppBundle\Entity\Laboratorio;
 use AppBundle\Entity\Medicamento;
+use AppBundle\Entity\LineaProduccion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -48,7 +49,7 @@ class GuiaestabilidadController extends Controller
         $form = $this->createFormBuilder($guiaestabilidad)
                ->add('idmedicamento', EntityType::class, array(
                     'class' => Medicamento::class,
-                    'choice_label' => 'medicamentoLaboratorio',
+                    'choice_label' => 'nombreMedicamento',
                     'attr'=>array(
                         'class'=>'form-control selectpicker',
                         'data-live-search'=>true,
@@ -92,9 +93,9 @@ class GuiaestabilidadController extends Controller
                         'title'=>'Seleccionar'
                         )
                 ))
-                ->add('idlaboratorio', EntityType::class, array(
-                    'class' => Laboratorio::class,
-                    'choice_label' => 'nombre',
+                ->add('idLineaProduccion', EntityType::class, array(
+                    'class' => LineaProduccion::class,
+                    'choice_label' => 'lineaProduccion',
                     'attr'=>array(
                         'class'=>'form-control selectpicker',
                         'data-live-search'=>true,

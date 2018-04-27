@@ -193,7 +193,7 @@ class Guiaestabilidad
      *
      * @ORM\ManyToOne(targetEntity="LineaProduccion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idLineaProduccion", referencedColumnName="id", nullable=true)
+     *   @ORM\JoinColumn(name="idLineaProduccion", referencedColumnName="id")
      * })
      */
     private $idLineaProduccion;

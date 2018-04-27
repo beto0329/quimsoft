@@ -4,10 +4,16 @@
     <h1>Crear Guía de Estabilidad</h1>
 
     {{ form_start(form) }}
-        <div class="col-md-6" >
+        <div class="col-md-3" >
             {{ form_label(form.idmedicamento) }}
             {{ form_widget(form.idmedicamento,{ 'id': 'medLab'}) }}
             {{ form_errors(form.idmedicamento) }}
+        </div>
+        
+        <div class="col-md-3" >
+            <label for="idLineaProduccion" >Línea de Producción</label>
+            {{ form_widget(form.idLineaProduccion) }}
+            {{ form_errors(form.idLineaProduccion) }}
         </div>
         <div class="col-md-3" >
             {{ form_label(form.nombrelasa) }}

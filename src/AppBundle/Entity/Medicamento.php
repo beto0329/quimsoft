@@ -31,13 +31,6 @@ class Medicamento
     /**
      * @var string
      *
-     * @ORM\Column(name="medicamento_laboratorio", type="string", length=250, nullable=false)
-     */
-    private $medicamentoLaboratorio;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="presentacion_existencia", type="string", length=150, nullable=false)
      */
     private $presentacionExistencia;
@@ -113,30 +106,6 @@ class Medicamento
         return $this->nombreMedicamento;
     }
     
-    /**
-     * Set medicamentoLaboratorio
-     *
-     * @param string $medicamentoLaboratorio
-     *
-     * @return Medicamento
-     */
-    public function setMedicamentoLaboratorio($medicamentoLaboratorio)
-    {
-        $this->medicamentoLaboratorio = $medicamentoLaboratorio;
-
-        return $this;
-    }
-
-    /**
-     * Get medicamentoLaboratorio
-     *
-     * @return string
-     */
-    public function getMedicamentoLaboratorio()
-    {
-        return $this->medicamentoLaboratorio;
-    }
-
     /**
      * Set presentacionExistencia
      *
