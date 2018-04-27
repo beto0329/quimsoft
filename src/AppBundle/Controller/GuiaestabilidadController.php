@@ -92,6 +92,15 @@ class GuiaestabilidadController extends Controller
                         'title'=>'Seleccionar'
                         )
                 ))
+                ->add('idlaboratorio', EntityType::class, array(
+                    'class' => Laboratorio::class,
+                    'choice_label' => 'nombre',
+                    'attr'=>array(
+                        'class'=>'form-control selectpicker',
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar'
+                        )
+                ))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'form-control btn btn-success')))
                 ->getForm();
 
