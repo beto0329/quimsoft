@@ -196,7 +196,7 @@ class Guiaestabilidad
      *   @ORM\JoinColumn(name="idLineaProduccion", referencedColumnName="id")
      * })
      */
-    private $idLineaProduccion;
+    private $idlineaproduccion;
 
 
 
@@ -763,26 +763,27 @@ class Guiaestabilidad
     }
     
     /**
-     * Set idLineaProduccion
+     * Set idlineaproduccion
      *
-     * @param \AppBundle\Entity\LineaProduccion $idLineaProduccion
+     * @param \AppBundle\Entity\LineaProduccion $idlineaproduccion
      *
-     * @return LineaProduccion
+     * @return Guiaestabilidad
      */
-    public function setLineaProduccion(\AppBundle\Entity\User $idLineaProduccion = null )
+    public function setIdlineaproduccion(\AppBundle\Entity\LineaProduccion $idlineaproduccion = null)
     {
-        $this->idLineaProduccion = $idLineaProduccion;
+        $this->idlineaproduccion = $idlineaproduccion;
 
         return $this;
     }
 
     /**
-     * Get lineaProduccion
+     * Get $idlineaproduccion
      *
-     * @return string
+     * @return \AppBundle\Entity\LineaProduccion
      */
-    public function getIdLineaProduccion()
+    public function getIdlineaproduccion()
     {
-        return $this->idLineaProduccion;
+        return $this->idlineaproduccion;
     }
+    
 }

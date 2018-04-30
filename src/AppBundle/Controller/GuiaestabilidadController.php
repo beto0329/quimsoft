@@ -30,7 +30,7 @@ class GuiaestabilidadController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $queryGuia = $em->createQuery("SELECT g.id, m.medicamentoLaboratorio, g.nombrelasa, g.presentacionfavorita, g.unidadmediad, g.envase, g.condicionesalmacenamiento, g.fotosensible FROM AppBundle\Entity\Guiaestabilidad g JOIN g.idmedicamento m ORDER BY g.id ASC ");
+        $queryGuia = $em->createQuery("SELECT g.id, m.nombreMedicamento, g.nombrelasa, g.presentacionfavorita, g.unidadmediad, g.envase, g.condicionesalmacenamiento, g.fotosensible FROM AppBundle\Entity\Guiaestabilidad g JOIN g.idmedicamento m ORDER BY g.id ASC ");
         $guiaestabilidads = $queryGuia->getResult();
         return $this->render('guiaestabilidad/index.html.twig', array(
             'guiaestabilidads' => $guiaestabilidads,
@@ -93,7 +93,7 @@ class GuiaestabilidadController extends Controller
                         'title'=>'Seleccionar'
                         )
                 ))
-                ->add('idLineaProduccion', EntityType::class, array(
+                ->add('idlineaproduccion', EntityType::class, array(
                     'class' => LineaProduccion::class,
                     'choice_label' => 'lineaProduccion',
                     'attr'=>array(

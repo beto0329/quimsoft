@@ -22,7 +22,7 @@
                     {% for guiaestabilidad in guiaestabilidads %}
                         <tr>
                             <td><a href="{{ path('guiaestabilidad_show', { 'id': guiaestabilidad.id }) }}">{{ guiaestabilidad.id }}</a></td>
-                            <td>{{ guiaestabilidad.medicamentoLaboratorio }}</td>
+                            <td>{{ guiaestabilidad.nombreMedicamento }}</td>
                             <td>{{ guiaestabilidad.nombrelasa }}</td>
                             <td>{{ guiaestabilidad.presentacionfavorita }}</td>
                             <td>{{ guiaestabilidad.unidadmediad }}</td>

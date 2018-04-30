@@ -30,13 +30,10 @@ class MedicamentoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
-//        $laboratorio = $em->getRepository('AppBundle:Laboratorio')->find($medicamentos->getIdlaboratorio());
-        $queryMedicamento = $em->createQuery("SELECT m.id, m.nombreMedicamento, m.medicamentoLaboratorio, m.presentacionExistencia, m.lote, m.fechaVencimiento, l.nombre FROM AppBundle\Entity\Medicamento m JOIN m.idlaboratorio l ");
-        $medicamentos = $queryMedicamento->getResult();
+        $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
+        
         return $this->render('medicamento/index.html.twig', array(
-            'medicamentos' => $medicamentos,
-//            'laboratorio' => $laboratorio,
+            'medicamentos' => $medicamentos
         ));
     }
 

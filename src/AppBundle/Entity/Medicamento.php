@@ -55,16 +55,7 @@ class Medicamento
      * @ORM\Column(name="current", type="date", nullable=false)
      */
     private $current;
-
-    /**
-     * @var \Laboratorio
-     *
-     * @ORM\ManyToOne(targetEntity="Laboratorio")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idLaboratorio", referencedColumnName="id")
-     * })
-     */
-    private $idlaboratorio;
+    
     
     
     public function __construct()
@@ -202,27 +193,5 @@ class Medicamento
         return $this->current;
     }
     
-    /**
-     * Set idlaboratorio
-     *
-     * @param \AppBundle\Entity\Laboratorio $idlaboratorio
-     *
-     * @return Guiaestabilidad
-     */
-    public function setIdlaboratorio(\AppBundle\Entity\Laboratorio $idlaboratorio = null)
-    {
-        $this->idlaboratorio = $idlaboratorio;
-
-        return $this;
-    }
-
-    /**
-     * Get idlaboratorio
-     *
-     * @return \AppBundle\Entity\Laboratorio
-     */
-    public function getIdlaboratorio()
-    {
-        return $this->idlaboratorio;
-    }
+    
 }

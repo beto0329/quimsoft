@@ -9,8 +9,6 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre Medicamento</th>
-                            <th>Nombre Laboratorio</th>
-                            <th>Medicamento+Laboratorio</th>
                             <th>Presentacionexistencia</th>
                             <th>Lote</th>
                             <th>Fechavencimiento</th>
@@ -22,8 +20,6 @@
                         <tr>
                             <td><a href="{{ path('medicamento_show', { 'id': medicamento.id }) }}">{{ medicamento.id }}</a></td>
                             <td>{{ medicamento.nombreMedicamento }}</td>
-                            <td>{{ medicamento.nombre }}</td>
-                            <td>{{ medicamento.medicamentoLaboratorio }}</td>
                             <td>{{ medicamento.presentacionExistencia }}</td>
                             <td>{{ medicamento.lote }}</td>
                             <td>{% if medicamento.fechaVencimiento %}{{ medicamento.fechaVencimiento|date('Y-m-d') }}{% endif %}</td>
