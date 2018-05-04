@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="panel panel-info">
+            <div class="panel-heading"><h2><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Ubicación <a href="{{ path('ubicacion_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Ubicación</a></h2></div>
+            <div class="panel-body">
+                <table id='labTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ubicacion</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for ubicacion in ubicacions %}
+                        <tr>
+                            <td><a href="{{ path('ubicacion_show', { 'id': ubicacion.id }) }}">{{ ubicacion.id }}</a></td>
+                            <td>{{ ubicacion.ubicacion }}</td>
+                            <td>
+                                <a href="{{ path('ubicacion_edit', { 'id': ubicacion.id }) }}" class="btn btn-info" >editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock %}

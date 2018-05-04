@@ -41,6 +41,13 @@ class Medicamento
      * @ORM\Column(name="lote", type="string", length=50, nullable=false)
      */
     private $lote;
+    
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="mezclas", type="array", nullable=true)
+     */
+    private $mezclas;
 
     /**
      * @var \DateTime
@@ -143,6 +150,30 @@ class Medicamento
     public function getLote()
     {
         return $this->lote;
+    }
+    
+    /**
+     * Set mezclas
+     *
+     * @param string $mezclas
+     *
+     * @return Medicamento
+     */
+    public function setMezclas($mezclas)
+    {
+        $this->mezclas = $mezclas;
+
+        return $this;
+    }
+
+    /**
+     * Get mezclas
+     *
+     * @return string
+     */
+    public function getMezclas()
+    {
+        return $this->mezclas;
     }
 
     /**

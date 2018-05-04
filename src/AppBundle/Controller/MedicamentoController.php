@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /**
@@ -45,27 +46,35 @@ class MedicamentoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $listaMedicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
+        foreach ($listaMedicamentos as $value){
+            $medicamentos[$value->getNombreMedicamento()] = $value->getId() ;
+        }
         $medicamento = new Medicamento();
         $form = $this->createFormBuilder($medicamento)
                 ->add('nombreMedicamento', TextType::class,array('label'=>'Nombre Medicamento','attr'=>array('class'=>'form-control')))
-                ->add('medicamentoLaboratorio', TextType::class,array('label'=>'Medicamento+Laboratorio','attr'=>array('class'=>'form-control')))
                 ->add('presentacionExistencia', TextType::class,array('label'=>'Presentación en Existencia','attr'=>array('class'=>'form-control')))
                 ->add('lote', TextType::class,array('label'=>'Lote','attr'=>array('class'=>'form-control')))
-                ->add('fechaVencimiento', DateType::class,array('label'=>'Fecha de Vencimiento','widget' => 'single_text','format' => 'yyyy-mm-dd','attr'=>array(
-                    'class' => 'form-control input-inline datepicker',
-                    'data-provide' => 'datepicker',
-                    'data-date-format' => 'yyyy-mm-dd'
-                )))
-                ->add('idlaboratorio', EntityType::class, array(
-                    'class' => Laboratorio::class,
-                    'choice_label' => 'nombre',
+                ->add('fechaVencimiento', DateType::class,array(
+                    'label'=>'Fecha de Producción',
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-mm-dd',
                     'attr'=>array(
-                        'class'=>'form-control selectpicker',                        
                         'data-live-search'=>true,
-                        'title'=>'Seleccionar'
-                    ),
-                    'data' => 'Seleccionar'
-                ))
+                        'class' => 'form-control datepicker',
+                )))
+                ->add('mezclas', ChoiceType::class, array(
+                    'label'=>'Mezclas',
+                    'expanded'=>false,
+                    'multiple'=>true,
+                    'choices'=>$medicamentos,
+                    'attr'=>array(
+                        'data-live-search'=>true,
+                        'title'=>'Seleccionar',
+                        'class'=>'form-control selectpicker'
+                        )
+                    ))
                 ->add('save', SubmitType::class, array('label' => 'Guardar','attr'=>array('class'=>'btn btn-success col-md-5')))
                 ->getForm();
         $form->handleRequest($request);

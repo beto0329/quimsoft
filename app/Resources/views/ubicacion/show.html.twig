@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ubicacion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ubicacion.id }}</td>
+            </tr>
+            <tr>
+                <th>Ubicacion</th>
+                <td>{{ ubicacion.ubicacion }}</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td>{% if ubicacion.current %}{{ ubicacion.current|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ubicacion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ubicacion_edit', { 'id': ubicacion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
