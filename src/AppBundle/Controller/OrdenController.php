@@ -32,8 +32,7 @@ class OrdenController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $queryOrden = $em->createQuery("SELECT od.id, od.fechaProduccion, od.horaProduccion, od.estado, lp.lineaProduccion FROM AppBundle\Entity\Orden od JOIN od.idLineaProduccion lp ");
-        $ordens = $queryOrden->getResult();
+         $ordens = $em->getRepository('AppBundle:Orden')->findAll();
 
         return $this->render('orden/index.html.twig', array(
             'ordens' => $ordens,
@@ -68,14 +67,6 @@ class OrdenController extends Controller
                         'data-live-search'=>true,
                         'class' => 'form-control timepicker',
                 )))
-                ->add('idlineaProduccion', EntityType::class, array(
-                    'class' => LineaProduccion::class,
-                    'choice_label' => 'lineaProduccion',
-                    'attr'=>array(
-                        'class'=>'form-control selectpicker',                        
-                        'data-live-search'=>true,
-                        'title'=>'Seleccionar'
-                    )))
                 ->add('idUserInterpreta', EntityType::class, array(
                     'class' => User::class,                    
                     'data' => $usuario,
@@ -90,24 +81,26 @@ class OrdenController extends Controller
             $em->flush();
             
             $numOrden=$orden->getId();
-            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, o.lineaProduccion, u1.nombre as qfinterpreta "
-                    . "FROM AppBundle\Entity\Orden o "
-                    . "JOIN o.idUserInterpreta u1 "
-                    . "WHERE o.id=:orden ")
-                    ->setParameter('orden',$numOrden);
-            $ordenMezcla = $queryOrden->getResult();
-            $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
-            $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
-            $diagnostico = $this->container->getParameter('diagnostico');
-            $eps = $this->container->getParameter('eps');
-
-            return $this->render('default/mezcla.html.twig', array(
-                'orden' => $ordenMezcla,
-                'diagnostico'  => $diagnostico,
-                'eps'  => $eps,
-                'medicamentos' => $medicamentos,
-                'pacientes'    => $pacientes
-                ));
+            return $this->redirectToRoute('mezcla_new',array('orden'=>$numOrden));
+//            $numOrden=$orden->getId();
+//            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, u1.nombre as qfinterpreta "
+//                    . "FROM AppBundle\Entity\Orden o "
+//                    . "JOIN o.idUserInterpreta u1 "
+//                    . "WHERE o.id=:orden ")
+//                    ->setParameter('orden',$numOrden);
+//            $ordenMezcla = $queryOrden->getResult();
+//            $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
+//            $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
+//            $diagnostico = $this->container->getParameter('diagnostico');
+//            $eps = $this->container->getParameter('eps');
+//
+//            return $this->render('default/mezcla.html.twig', array(
+//                'orden' => $ordenMezcla,
+//                'diagnostico'  => $diagnostico,
+//                'eps'  => $eps,
+//                'medicamentos' => $medicamentos,
+//                'pacientes'    => $pacientes
+//                ));
         }
 
         return $this->render('orden/new.html.twig', array(
