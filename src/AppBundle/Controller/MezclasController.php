@@ -40,7 +40,11 @@ class MezclasController extends Controller
                 . "WHERE o.id=:orden ")
                 ->setParameter('orden',$orden);
         $ordenMezcla = $queryOrden->getResult();
-        $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
+        $queryGuiaEstab = $em->createQuery("SELECT gb.id, md.nombreMedicamento, lb.nombre "
+                . "FROM AppBundle\Entity\Guiaestabilidad gb "
+                . "JOIN gb.idmedicamento md "
+                . "JOIN gb.idlaboratorio lb ");
+        $guiaEstabilidad = $queryGuiaEstab->getResult();
         $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
         $diagnostico = $this->container->getParameter('diagnostico');
         $eps = $this->container->getParameter('eps');
@@ -49,7 +53,7 @@ class MezclasController extends Controller
             'orden' => $ordenMezcla,
             'diagnostico'  => $diagnostico,
             'eps'  => $eps,
-            'medicamentos' => $medicamentos,
+            'guiaEstabilidad' => $guiaEstabilidad,
             'pacientes'    => $pacientes
             ));
     }

@@ -11,7 +11,6 @@
                             <th>Fechaproduccion</th>
                             <th>Horaproduccion</th>
                             <th>Estado</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,10 +19,7 @@
                             <td><a href="{{ path('orden_show', { 'id': orden.id }) }}">{{ orden.id }}</a></td>
                             <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
                             <td>{{ orden.horaProduccion }}</td>
-                            <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="#" class="btn btn-danger" >En Proceso</a>{% endif %}</td>
-                            <td>
-                                <a href="{{ path('orden_show', { 'id': orden.id }) }}" class="btn btn-info">Ver Orden</a>
-                            </td>
+                            <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="{{ path('mezcla_new', { 'orden': orden.id }) }}" class="btn btn-danger" >En Proceso</a>{% endif %}</td>                            
                         </tr>
                     {% endfor %}
                     </tbody>
