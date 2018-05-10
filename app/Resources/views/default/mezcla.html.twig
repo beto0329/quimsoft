@@ -11,119 +11,123 @@
             <a href="#" class="btn btn-primary pull-right" id="addMezcla" ><b>Agregar Medicamento</b></a>
         </div>
         <div class="panel-body" >
-            <form name="newMezcla" id="newMezcla" >           
-                <div id="mezclas" >                    
-                    <div class="col-md-12 form-group">
-                        {% if diagnostico %}
-                            <div class="col-md-4 form-group">
-                                <label for="paciente" >Paciente</label>
-                                <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for paciente in pacientes %}
-                                        <option value="{{ paciente.documento }}" >{{ paciente.documento }} - {{ paciente.nombreCompleto }}</option>
-                                    {% endfor %}    
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="diagnostico" >Diagnostico</label>
-                                <input type="text" name="diagnosticoSelect1" class="form-control" />
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="eps" >EPS</label>
-                                <input type="text" name="epsSelect1" class="form-control" />
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form name="newMezcla" id="newMezcla" >           
+                        <div id="mezclas" >                    
+                            <div class="col-md-12 form-group">
+                                {% if diagnostico %}
+                                    <div class="col-md-4 form-group">
+                                        <label for="paciente" >Paciente</label>
+                                        <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for paciente in pacientes %}
+                                                <option value="{{ paciente.documento }}" >{{ paciente.documento }} - {{ paciente.nombreCompleto }}</option>
+                                            {% endfor %}    
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label for="diagnostico" >Diagnostico</label>
+                                        <input type="text" name="diagnosticoSelect1" class="form-control" />
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label for="eps" >EPS</label>
+                                        <input type="text" name="epsSelect1" class="form-control" />
+                                    </div>    
+                                    <div class="col-md-4 form-group">
+                                        <label for="Medicamento1" >Medicamento 1</label>
+                                        <select name="medicamento1" id="medicamento1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for guia in guiaEstabilidad %}
+                                                <option value="{{ guia.id }}" >{{ guia.nombreMedicamento }} - {{ guia.nombre }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label for="dosis1" >Dosis 1</label>
+                                        <input type="text" name="dosis1" class="form-control" />
+                                    </div>
+                                    {# <div class="col-md-3 form-group">
+                                        <label for="Medicamento2" >Medicamento 2</label>
+                                        <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for medica in medicamentos %}
+                                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label for="dosis2" >Dosis 2</label>
+                                        <input type="text" name="dosis2Select1" class="form-control" />
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <label for="Medicamento3" >Medicamento 3</label>
+                                        <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for medica in medicamentos %}
+                                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div> 
+                                    <div class="col-md-1 form-group">
+                                        <label for="dosis3" >Dosis 3</label>
+                                        <input type="text" name="dosis3Select1" class="form-control" />
+                                    </div> #}
+                                {% else %} 
+                                    <div class="col-md-6 form-group">
+                                        <label for="paciente" >Paciente</label>
+                                        <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for paciente in pacientes %}
+                                                <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
+                                            {% endfor %}    
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label for="Medicamento1" >Medicamento 1</label>
+                                        <select name="medicamento1Select1" id="medicamentoSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for medica in medicamentos %}
+                                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label for="dosis1" >Dosis 1</label>
+                                        <input type="text" name="dosis1Select1" class="form-control" />
+                                    </div>
+                                    {# <div class="col-md-2 form-group">
+                                        <label for="Medicamento2" >Medicamento 2</label>
+                                        <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for medica in medicamentos %}
+                                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label for="dosis2" >Dosis 2</label>
+                                        <input type="text" name="dosis2Select1" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2 form-group">
+                                        <label for="Medicamento3" >Medicamento 3</label>
+                                        <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
+                                            {% for medica in medicamentos %}
+                                                <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
+                                            {% endfor %}   
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <label for="dosis3" >Dosis 3</label>
+                                        <input type="text" name="dosis3Select1" class="form-control" />
+                                    </div> #}
+                                {% endif %}
                             </div>    
-                            <div class="col-md-4 form-group">
-                                <label for="Medicamento1" >Medicamento 1</label>
-                                <select name="medicamento1" id="medicamento1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for guia in guiaEstabilidad %}
-                                        <option value="{{ guia.id }}" >{{ guia.nombreMedicamento }} - {{ guia.nombre }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="dosis1" >Dosis 1</label>
-                                <input type="text" name="dosis1" class="form-control" />
-                            </div>
-                            {# <div class="col-md-3 form-group">
-                                <label for="Medicamento2" >Medicamento 2</label>
-                                <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for medica in medicamentos %}
-                                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div>
-                            <div class="col-md-1 form-group">
-                                <label for="dosis2" >Dosis 2</label>
-                                <input type="text" name="dosis2Select1" class="form-control" />
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <label for="Medicamento3" >Medicamento 3</label>
-                                <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for medica in medicamentos %}
-                                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div> 
-                            <div class="col-md-1 form-group">
-                                <label for="dosis3" >Dosis 3</label>
-                                <input type="text" name="dosis3Select1" class="form-control" />
-                            </div> #}
-                        {% else %} 
-                            <div class="col-md-6 form-group">
-                                <label for="paciente" >Paciente</label>
-                                <select name="pacienteSelect1" id="pacienteSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for paciente in pacientes %}
-                                        <option value="{{ paciente.documento }}" >{{ paciente.nombreCompleto }}</option>
-                                    {% endfor %}    
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <label for="Medicamento1" >Medicamento 1</label>
-                                <select name="medicamento1Select1" id="medicamentoSelect1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for medica in medicamentos %}
-                                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="dosis1" >Dosis 1</label>
-                                <input type="text" name="dosis1Select1" class="form-control" />
-                            </div>
-                            {# <div class="col-md-2 form-group">
-                                <label for="Medicamento2" >Medicamento 2</label>
-                                <select name="medicamento2Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for medica in medicamentos %}
-                                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div>
-                            <div class="col-md-1 form-group">
-                                <label for="dosis2" >Dosis 2</label>
-                                <input type="text" name="dosis2Select1" class="form-control" />
-                            </div>
-                            <div class="col-md-2 form-group">
-                                <label for="Medicamento3" >Medicamento 3</label>
-                                <select name="medicamento3Select1" class="selectpicker form-control" data-live-search="true" title="Seleccionar">
-                                    {% for medica in medicamentos %}
-                                        <option value="{{ medica.id }}" >{{ medica.nombreMedicamento }}</option>
-                                    {% endfor %}   
-                                </select>
-                            </div>
-                            <div class="col-md-1 form-group">
-                                <label for="dosis3" >Dosis 3</label>
-                                <input type="text" name="dosis3Select1" class="form-control" />
-                            </div> #}
-                        {% endif %}
-                    </div>    
+                        </div>
+
+                        <hr>
+                        <div class="clear-fix"></div>
+                        <div class="form-group col-md-12 text-center">                
+                            <a href="#" class="btn btn-success col-md-2">Procesar Orden</a>
+                            <a href="{{ path('orden_index') }}" class="btn btn-danger col-md-2">Cancelar</a>
+                        </div>
+                        <input type="hidden" id="orden" value="{{ orden.0.id }}" />
+                    </form> 
                 </div>
-                
-                <hr>
-                <div class="clear-fix"></div>
-            <div class="form-group col-md-12 text-center">                
-                <a href="#" class="btn btn-success col-md-2">Procesar Orden</a>
-                <a href="{{ path('orden_index') }}" class="btn btn-danger col-md-2">Cancelar</a>
-            </div>
-            <input type="hidden" id="orden" value="{{ orden.0.id }}" />
-        </form>    
+            </div>    
         </div>
         <input type="hidden" id="contador" value="1" />
     </div>                    
@@ -138,16 +142,21 @@
                 var contador = parseInt($('#contador').val())+1;
                 $('#contador').val(contador);
                 {% if diagnostico %}
-                    var selectMedica1 = '<div class="col-md-12 form-group"><div class="col-md-4 form-group"><label for="Medicamento'+contador+'" >Medicamento '+contador+'</label><select name="medicamento'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
-                     var optionsMedica = '';
-                    $('#medicamento1Select1 option').each(function(){
+                    var selectMedica1 = '<div class="col-md-12 form-group" id="divMed'+contador+'" ><div class="col-md-4 form-group"><label for="Medicamento'+contador+'" >Medicamento '+contador+'</label><select name="medicamento'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';
+                    var optionsMedica = '';
+                    $('#medicamento1 option').each(function(){
                         optionsMedica = optionsMedica+'<option value="'+$(this).val()+'" >'+$(this).html()+'</option>';
                     });
                     
-                    selectMedica1 = selectMedica1+optionsMedica+'</select></div><div class="col-md-2 form-group"><label for="dosis'+contador+'" >Dosis '+contador+'</label><input type="text" name="dosis'+contador+'" class="form-control" /></div></div>';
+                    selectMedica1 = selectMedica1+optionsMedica+'</select></div><div class="col-md-2 form-group"><label for="dosis'+contador+'" >Dosis '+contador+'</label><div class="input-group"><input type="text" name="dosis'+contador+'" class="form-control" /><span class="input-group-addon"><i class="glyphicon glyphicon-remove removeMed" data-value="'+contador+'"></i></span></div></div></div>';
                    
                     $('#mezclas').append(selectMedica1);
                     $('.selectpicker').selectpicker();
+                    $('.removeMed').click(function(){
+                        var idMed = $(this).data('value');
+                        $('#divMed'+idMed).remove();
+                        $('#contador').val(contador-1);
+                    });
                     
                 {% else %}    
                     var selectMedica1 = '<div class="col-md-2 form-group"><label for="Medicamento1Select'+contador+'" >Medicamento 1</label><select name="medicamento1Select'+contador+'" class="selectpicker form-control" data-live-search="true" title="Seleccionar">';

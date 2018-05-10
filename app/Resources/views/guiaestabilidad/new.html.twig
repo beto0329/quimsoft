@@ -14,7 +14,12 @@
             <label for="idLineaProduccion" >Línea de Producción</label>
             {{ form_widget(form.idlineaproduccion) }}
             {{ form_errors(form.idlineaproduccion) }}
-        </div> 
+        </div>        
+        <div class="col-md-3" >
+            <label for="idlaboratorio" >Laboratorio</label>
+            {{ form_widget(form.idlaboratorio) }}
+            {{ form_errors(form.idlaboratorio) }}
+        </div>
         <div class="col-md-3" >
             {{ form_label(form.nombrelasa) }}
             {{ form_widget(form.nombrelasa) }}
@@ -119,11 +124,6 @@
             {{ form_label(form.tiempoinfusion) }}
             {{ form_widget(form.tiempoinfusion) }}
             {{ form_errors(form.tiempoinfusion) }}
-        </div>
-        <div class="col-md-3" >
-            <label for="idlaboratorio" >Laboratorio</label>
-            {{ form_widget(form.idlaboratorio) }}
-            {{ form_errors(form.idlaboratorio) }}
         </div>
         <hr>
         <div class="col-md-6" >
