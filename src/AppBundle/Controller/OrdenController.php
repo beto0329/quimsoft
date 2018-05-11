@@ -38,6 +38,23 @@ class OrdenController extends Controller
             'ordens' => $ordens,
         ));
     }
+    
+    /**
+     * Actualiza el estado de las ordenes al ser cerradas.
+     *
+     * @Route("/update", name="orden_index")
+     * @Method("POST")
+     */
+    public function updateAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+         $orden = $em->getRepository('AppBundle:Orden')->findOneBy(array("id"=>$_POST['orden']));
+         $orden->setEstado('2');
+        return $this->render('orden/index.html.twig', array(
+            'ordens' => $ordens,
+        ));
+    }
 
     /**
      * Creates a new orden entity.

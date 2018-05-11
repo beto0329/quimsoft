@@ -6,10 +6,12 @@ use AppBundle\Entity\Medicamento;
 use AppBundle\Entity\Laboratorio;
 use AppBundle\Entity\Orden;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Mezcla;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -56,5 +58,43 @@ class MezclasController extends Controller
             'guiaEstabilidad' => $guiaEstabilidad,
             'pacientes'    => $pacientes
             ));
+    }
+    
+    /**
+     * Insert a new mezcla.
+     *
+     * @Route("/insert", name="mezcla_insert")
+     * @Method({"POST"})
+     */
+    public function insertAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        for($i=1; $i<=$_POST['contador'];$i++){
+            $mezcla = new Mezcla();
+            
+            $Orden = $em->getRepository('AppBundle:Orden')->findOneById($_POST['idOrden']);
+            $Paciente = $em->getRepository('AppBundle:Paciente')->findOneById($_POST["pacienteSelect1"]);
+            $Guia = $em->getRepository('AppBundle:Guiaestabilidad')->findOneById($_POST["medicamento$i"]);
+            $dosis = $_POST["dosis$i"];        
+        
+            $mezcla->setIdpaciente($Paciente);
+            $mezcla->setIdguiaestabilidad($Guia);
+            $mezcla->setIdorden($Orden);
+            $mezcla->setDosis($dosis);
+
+            $em->persist($mezcla);
+            $em->flush();
+        }    
+        
+        if($mezcla->getId()){
+            return New Response(json_encode(array("idMezcla"=>$mezcla->getId())));
+        }else{
+            return New Response(json_encode(array("idMezcla"=>0)));
+        }
+        
+        
+       
     }
 }
