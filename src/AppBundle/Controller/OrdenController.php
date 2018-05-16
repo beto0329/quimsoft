@@ -26,36 +26,37 @@ class OrdenController extends Controller
      * Lists all orden entities.
      *
      * @Route("/", name="orden_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-         $ordens = $em->getRepository('AppBundle:Orden')->findAll();
-
+        $em = $this->getDoctrine()->getManager();        
+        
+        
+        if(isset($_POST['orden'])){
+            $orden = $em->getRepository('AppBundle:Orden')->findOneBy(array("id"=>$_POST['orden']));
+            $orden->setEstado('2');
+            $em->persist($orden);
+            $em->flush();
+            
+            $idOrden = $orden->getId();
+        }else{
+            $idOrden = 0;
+        }
+        
+        $ordens = $em->getRepository('AppBundle:Orden')->findBy(array("estado"=>0));
+        $ordenProcesada = $em->getRepository('AppBundle:Orden')->findBy(array("estado"=>"2"));
+        
         return $this->render('orden/index.html.twig', array(
+            'ordenOk' => $idOrden,
             'ordens' => $ordens,
+            'ordenProcesada' => $ordenProcesada,
         ));
+
+        
     }
     
-    /**
-     * Actualiza el estado de las ordenes al ser cerradas.
-     *
-     * @Route("/update", name="orden_index")
-     * @Method("POST")
-     */
-    public function updateAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-         $orden = $em->getRepository('AppBundle:Orden')->findOneBy(array("id"=>$_POST['orden']));
-         $orden->setEstado('2');
-        return $this->render('orden/index.html.twig', array(
-            'ordens' => $ordens,
-        ));
-    }
-
+    
     /**
      * Creates a new orden entity.
      *
@@ -99,25 +100,7 @@ class OrdenController extends Controller
             
             $numOrden=$orden->getId();
             return $this->redirectToRoute('mezcla_new',array('orden'=>$numOrden));
-//            $numOrden=$orden->getId();
-//            $queryOrden = $em->createQuery("SELECT o.id, o.fechaProduccion, o.horaProduccion, u1.nombre as qfinterpreta "
-//                    . "FROM AppBundle\Entity\Orden o "
-//                    . "JOIN o.idUserInterpreta u1 "
-//                    . "WHERE o.id=:orden ")
-//                    ->setParameter('orden',$numOrden);
-//            $ordenMezcla = $queryOrden->getResult();
-//            $medicamentos = $em->getRepository('AppBundle:Medicamento')->findAll();
-//            $pacientes = $em->getRepository('AppBundle:Paciente')->findAll();
-//            $diagnostico = $this->container->getParameter('diagnostico');
-//            $eps = $this->container->getParameter('eps');
-//
-//            return $this->render('default/mezcla.html.twig', array(
-//                'orden' => $ordenMezcla,
-//                'diagnostico'  => $diagnostico,
-//                'eps'  => $eps,
-//                'medicamentos' => $medicamentos,
-//                'pacientes'    => $pacientes
-//                ));
+
         }
 
         return $this->render('orden/new.html.twig', array(

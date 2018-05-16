@@ -1,29 +1,82 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if ordenOk > 0 %}
+        <div class="alert alert-success" id="success-alert">
+            <strong>Ok! </strong>
+            Orden {{ ordenOk }} Procesada correctamente!
+            <button type="button" class="close" id="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}    
     <div class="panel panel-info">
             <div class="panel-heading"><h2><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>Orden de Producción <a href="{{ path('orden_new') }}" class="btn btn-info pull-right" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Crear Orden</a></h2></div>
             <div class="panel-body">
-                <table id='medTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Fechaproduccion</th>
-                            <th>Horaproduccion</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for orden in ordens %}
-                        <tr>
-                            <td><a href="{{ path('orden_show', { 'id': orden.id }) }}">{{ orden.id }}</a></td>
-                            <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
-                            <td>{{ orden.horaProduccion }}</td>
-                            <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="{{ path('mezcla_new', { 'orden': orden.id }) }}" class="btn btn-danger" >En Proceso</a>{% endif %}</td>                            
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home"><h3>Ordenes Pendientes</h3></a></li>
+                    <li><a data-toggle="tab" href="#ordenProcesada"><h3>Ordenes Procesadas</h3></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <table id='medTable' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Fechaproduccion</th>
+                                    <th>Horaproduccion</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for orden in ordens %}
+                                <tr>
+                                    <td><a href="{{ path('orden_show', { 'id': orden.id }) }}">{{ orden.id }}</a></td>
+                                    <td>{% if orden.fechaProduccion %}{{ orden.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{{ orden.horaProduccion }}</td>
+                                    <td>{% if orden.estado %}<a href="#" class="btn btn-success" >Procesada</a>{% else %}<a href="{{ path('mezcla_new', { 'orden': orden.id }) }}" class="btn btn-danger" >En Proceso</a>{% endif %}</td>                            
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="ordenProcesada" class="tab-pane fade"> 
+                        <table id='medTable2' class='table table-hover table-striped table-bordered dt-responsive' cellspacing='0' width='100%'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Fechaproduccion</th>
+                                    <th>Horaproduccion</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for ordenProce in ordenProcesada %}
+                                <tr>
+                                    <td><a href="{{ path('orden_show', { 'id': ordenProce.id }) }}">{{ ordenProce.id }}</a></td>
+                                    <td>{% if ordenProce.fechaProduccion %}{{ ordenProce.fechaProduccion|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{{ ordenProce.horaProduccion }}</td>
+                                    <td><a href="#" class="btn btn-success" >Procesada</a></td>                            
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>            
             </div>
         </div>  
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){            
+            
+            $('#close').click(function(){
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+                    $("#success-alert").slideUp(500);
+                }); 
+            });        
+                
+        });
+    </script>
+{% endblock %}    
